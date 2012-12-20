@@ -1,3 +1,4 @@
+			<?php get_template_part('includes/above-the-footer'); ?>
 			<div id="footer">
 				
 				<?=wp_nav_menu(array(
@@ -11,37 +12,42 @@
 					));
 				?>
 				<div class="row" id="footer-widget-wrap">
-					<div class="footer-widget-1 span3">
+					<div class="footer-widget-1 span8">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column One')):?>
-							<a class="ignore-external" href="http://www.ucf.edu"><img src="<?=THEME_IMG_URL?>/logo.png" alt="" title="" /></a>
-						<?php endif;?>
+							<span id="tt-footer-links">
+								<?php $about = get_page_by_path('about-ott'); ?>
+								<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
+								<?php $forResearchers = get_page_by_path('for-researchers'); ?>
+								<a href="<?=get_page_link($forResearchers->ID); ?>"><?=strtoupper(get_post_meta($forResearchers->ID, 'short', true)); ?></a>
+								<?php $forIndustry = get_page_by_path('for-industry'); ?>
+								<a href="<?=get_page_link($forIndustry->ID); ?>"><?=strtoupper(get_post_meta($forIndustry->ID, 'short', true)); ?></a>
+								<?php $contactUs = get_page_by_path('contact-us'); ?>
+								<a href="<?=get_page_link($contactUs->ID); ?>"><?=strtoupper($contactUs->post_title); ?></a>
+							</span>
+						<?php endif; ?>
 					</div>
-					<div class="footer-widget-2 span3">
+					<div class="footer-widget-2 span4">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Two')):?>
-						&nbsp;
-						<?php endif;?>
-					</div>
-					<div class="footer-widget-3 span3">
-						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Three')):?>
-						&nbsp;
-						<?php endif;?>
-					</div>
-					<div class="footer-widget-4 span3">
-						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Four')):?>
 							<?php $options = get_option(THEME_OPTIONS_NAME);?>
-							<?php if($options['site_contact'] or $options['organization_name']):?>
-								<div class="maintained">
-									Site maintained by the <br />
-									<?php if($options['site_contact'] and $options['organization_name']):?>
-									<a href="mailto:<?=$options['site_contact']?>"><?=$options['organization_name']?></a>
-									<?php elseif($options['site_contact']):?>
-									<a href="mailto:<?=$options['site_contact']?>"><?=$options['site_contact']?></a>
-									<?php elseif($options['organization_name']):?>
-									<?=$options['organization_name']?>
-									<?php endif;?>
-								</div>
+							<div id="tt-footer-maintained" class="maintained">
+								<?php if($options['organization_name']): ?>
+									<?= $options['organization_name']; ?>
 								<?php endif;?>
-							<div class="copyright">&copy; University of Central Florida</div>
+								
+								<?php if ($options['organization_name'] and $options['street_address'] and $options['city_address'] and $options['state_address'] and $options['zip_address']): ?>
+									| <?=$options['street_address'];?> | <?=$options['city_address'];?>, <?=$options['state_address'];?> <?=$options['zip_address'];?>
+								<?php elseif($options['street_address'] and $options['city_address'] and $options['state_address'] and $options['zip_address']): ?>
+									<?=$options['street_address'];?> | <?=$options['city_address'];?>, <?=$options['state_address'];?> <?=$options['zip_address'];?>
+								<?php endif;?>
+
+								<?php if($options['phone_number'] and $options['fax_number']): ?>
+									<br />Phone: <?=$options['phone_number'];?> | Fax: <?=$options['fax_number'];?>
+								<?php elseif($options['phone_number'] and !$options['fax_number']): ?>
+									<br />Phone: <?=$options['phone_number'];?>
+								<?php elseif(!$options['phone_number'] and $options['fax_number']): ?>
+									<br />Fax: <?=$options['fax_number'];?>
+								<?php endif; ?>
+							</div>
 						<?php endif;?>
 					</div>
 				</div>

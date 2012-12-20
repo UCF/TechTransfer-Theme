@@ -23,6 +23,27 @@ function __init__(){
 		'after_widget'  => '</div>',
 	));
 	register_sidebar(array(
+		'name'          => __('Below the Home Header - Left'),
+		'id'            => 'home-header-bottom-left',
+		'description'   => 'Left column below the header on the Home Page',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+	));
+	register_sidebar(array(
+		'name'          => __('Below the Home Header - Center'),
+		'id'            => 'home-header-bottom-center',
+		'description'   => 'Center column below the header on the Home Page.',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+	));
+	register_sidebar(array(
+		'name'          => __('Below the Home Header - Right'),
+		'id'            => 'home-header-bottom-right',
+		'description'   => 'Right column below the header on the Home Page.',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+	));
+	register_sidebar(array(
 		'name'          => __('Below the Fold - Left'),
 		'id'            => 'bottom-left',
 		'description'   => 'Left column on the bottom of pages, after flickr images if enabled.',
@@ -54,20 +75,6 @@ function __init__(){
 		'name' => __('Footer - Column Two'),
 		'id' => 'bottom-two',
 		'description' => 'Second column from the left in footer, on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	));
-	register_sidebar(array(
-		'name' => __('Footer - Column Three'),
-		'id' => 'bottom-three',
-		'description' => 'Third column from the left in footer, on the bottom of pages.',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-	));
-	register_sidebar(array(
-		'name' => __('Footer - Column Four'),
-		'id' => 'bottom-four',
-		'description' => 'Far right in footer on the bottom of pages.',
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 	));
@@ -117,7 +124,11 @@ Config::$custom_post_types = array(
 	'Publication',
 	'Page',
 	'Person',
-	'Post'
+	'Post',
+	'Inventor',
+	'Technology',
+	'About',
+	'FooterResource',
 );
 
 Config::$custom_taxonomies = array(
@@ -129,6 +140,9 @@ Config::$body_classes = array('default',);
 /**
  * Configure theme settings, see abstract class Field's descendants for
  * available fields. -- functions/base.php
+ *
+ * @author Jared Lang
+ * @author Brandon Groves
  **/
 Config::$theme_settings = array(
 	'Analytics' => array(
@@ -253,6 +267,7 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['search_per_page'],
 		)),
 	),
+	# Added address and phone numbers
 	'Site' => array(
 		new TextField(array(
 			'name'        => 'Contact Email',
@@ -265,6 +280,42 @@ Config::$theme_settings = array(
 			'id'          => THEME_OPTIONS_NAME.'[organization_name]',
 			'description' => 'Your organization\'s name',
 			'value'       => $theme_options['organization_name'],
+		)),
+		new TextField(array(
+			'name'        => 'Street Address',
+			'id'          => THEME_OPTIONS_NAME.'[street_address]',
+			'description' => 'Your organization\'s street address',
+			'value'       => $theme_options['street_address'],
+		)),
+		new TextField(array(
+			'name'        => 'City',
+			'id'          => THEME_OPTIONS_NAME.'[city_address]',
+			'description' => 'The city your organization is located',
+			'value'       => $theme_options['city_address'],
+		)),
+		new TextField(array(
+			'name'        => 'State',
+			'id'          => THEME_OPTIONS_NAME.'[state_address]',
+			'description' => 'The state your organization is located',
+			'value'       => $theme_options['state_address'],
+		)),
+		new TextField(array(
+			'name'        => 'Zip',
+			'id'          => THEME_OPTIONS_NAME.'[zip_address]',
+			'description' => 'The zip your organization is located',
+			'value'       => $theme_options['zip_address'],
+		)),
+		new TextField(array(
+			'name'        => 'Phone Number',
+			'id'          => THEME_OPTIONS_NAME.'[phone_number]',
+			'description' => 'Your organization\'s phone number',
+			'value'       => $theme_options['phone_number'],
+		)),
+		new TextField(array(
+			'name'        => 'Fax Number',
+			'id'          => THEME_OPTIONS_NAME.'[fax_number]',
+			'description' => 'Your organization\'s name',
+			'value'       => $theme_options['fax_number'],
 		)),
 		new SelectField(array(
 			'name'        => 'Home Image',

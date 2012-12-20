@@ -44,33 +44,20 @@
 				this.data         = data;
 			}
 		</script>
+
+		<script type="text/javascript" src="<?=THEME_JS_URL?>/techtransfer.js"></script>
 		
 	</head>
 	<body class="<?=body_classes()?>">
 		<div class="container">
 			<div class="row">
 				<div id="header" class="row-border-bottom-top">
-					<h1 class="span9"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
-					<?php $options = get_option(THEME_OPTIONS_NAME);?>
-					<?php if($options['facebook_url'] or $options['twitter_url']):?>
-					<ul class="social menu horizontal span3">
-						<?php if($options['facebook_url']):?>
-						<li><a class="ignore-external facebook" href="<?=$options['facebook_url']?>">Facebook</a></li>
-						<?php endif;?>
-						<?php if($options['twitter_url']):?>
-						<li><a class="ignore-external twitter" href="<?=$options['twitter_url']?>">Twitter</a></li>
-						<?php endif;?>
-					</ul>
-					<?php else:?>
-					<div class="social span3">&nbsp;</div>
-					<?php endif;?>
+						<h1 class="span8"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
+						<span id="tt-header-links" class="span4">
+							<?php $about = get_page_by_path('about-ott'); ?>
+							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
+							<?php $about = get_page_by_path('contact-us'); ?>
+							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
+						<span>
 				</div>
 			</div>
-			<?=wp_nav_menu(array(
-				'theme_location' => 'header-menu', 
-				'container' => 'false', 
-				'menu_class' => 'menu '.get_header_styles(), 
-				'menu_id' => 'header-menu', 
-				'walker' => new Bootstrap_Walker_Nav_Menu()
-				));
-			?>

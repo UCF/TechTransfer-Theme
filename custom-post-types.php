@@ -679,4 +679,80 @@ class Post extends CustomPostType {
 		);
 	}
 }
+
+/**
+ * About Post Type
+ **/
+class About extends CustomPostType{
+	public 
+		$name           = 'about',
+		$plural_name    = 'About',
+		$singular_name  = 'Abo Topic',
+		$add_new_item   = 'Add New Topic',
+		$edit_item      = 'Edit Topic',
+		$new_item       = 'New Topic',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True;
+}
+
+/**
+ * Inventor Post Type
+ **/
+class Inventor extends CustomPostType{
+	public 
+		$name           = 'inventor',
+		$plural_name    = 'Inventors',
+		$singular_name  = 'Inventor',
+		$add_new_item   = 'Add New Inventor',
+		$edit_item      = 'Edit Inventor',
+		$new_item       = 'New Inventor',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True;
+}
+
+/**
+ * Technology Post Type
+ **/
+class Technology extends CustomPostType{
+	public 
+		$name           = 'technology',
+		$plural_name    = 'Technologies',
+		$singular_name  = 'Technology',
+		$add_new_item   = 'Add New Technology',
+		$edit_item      = 'Edit Technology',
+		$new_item       = 'New Technology',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True;
+}
+
+/**
+ * Footer Resources Post Type
+ **/
+class FooterResource extends CustomPostType{
+	public 
+		$name           = 'footerresource',
+		$plural_name    = 'Footer Resources',
+		$singular_name  = 'Footer Resource',
+		$add_new_item   = 'Add New Footer Resource',
+		$edit_item      = 'Edit Footer Resource',
+		$new_item       = 'New Footer Resource',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True;
+}
 ?>
