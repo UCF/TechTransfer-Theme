@@ -14,4 +14,5 @@
 			</article>
 		</div>
 	</div>
+<?php get_template_part('includes/above-the-footer'); ?>
 <?php get_footer();?>

@@ -99,7 +99,7 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 #home{margin-top: 20px}
 #tt-header-description{font-size: 24px; font-family: "Times", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"; font-style: italic; line-height: 1.25em; color: #274245;}
 
-#below-the-home-header{margin-top: 20px; padding-bottom: 1em;}
+#below-the-home-header{margin-top: 20px; }
 #below-the-home-header h2{font-size: 16px; line-height: 10px; font-weight: normal;}
 #below-the-home-header p{font-size: 12px; line-height: 14px;}
 #below-the-home-header .textwidget{font-size: 12px; line-height: 14px;}
@@ -114,7 +114,7 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 .resource{padding: 25px 20px;}
 .featured-text h4{margin: 0; padding: 0;}
 .featured-text p{margin: 0; padding: 0; font-size: 12px; line-height: 14px}
-.featured-text{padding-left: 54px;}
+.featured-text{padding-left: 65px;}
 .featured-image{float: left;}
 
 @media (max-width: 979px) {

@@ -479,7 +479,8 @@ class Page extends CustomPostType {
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True,
-		$built_in       = True;
+		$built_in       = True,
+		$taxonomies		= array('resource_groups');
 
 	public function fields() {
 		$prefix = $this->options('name').'_';
@@ -490,12 +491,12 @@ class Page extends CustomPostType {
 				'id'   => $prefix.'hide_fold',
 				'type' => 'checkbox',
 			),
-				array(
-					'name' => 'Stylesheet',
-					'desc' => '',
-					'id' => $prefix.'stylesheet',
-					'type' => 'file',
-				),
+			array(
+				'name' => 'Stylesheet',
+				'desc' => '',
+				'id' => $prefix.'stylesheet',
+				'type' => 'file',
+			),
 		);
 	}
 }
@@ -670,18 +671,20 @@ class Post extends CustomPostType {
 				'id'   => $prefix.'hide_fold',
 				'type' => 'checkbox',
 			),
-				array(
-					'name' => 'Stylesheet',
-					'desc' => '',
-					'id' => $prefix.'stylesheet',
-					'type' => 'file',
-				),
+			array(
+				'name' => 'Stylesheet',
+				'desc' => '',
+				'id' => $prefix.'stylesheet',
+				'type' => 'file',
+			),
 		);
 	}
 }
 
 /**
  * About Post Type
+ *
+ * @author Brandon Groves
  **/
 class About extends CustomPostType{
 	public 
@@ -701,6 +704,8 @@ class About extends CustomPostType{
 
 /**
  * Inventor Post Type
+ *
+ * @author Brandon Groves
  **/
 class Inventor extends CustomPostType{
 	public 
@@ -716,10 +721,24 @@ class Inventor extends CustomPostType{
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True;
+
+	public function fields() {
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Shortened Description',
+				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
+				'id'   => $prefix.'short_description',
+				'type' => 'text',
+			),
+		);
+	}
 }
 
 /**
  * Technology Post Type
+ *
+ * @author Brandon Groves
  **/
 class Technology extends CustomPostType{
 	public 
@@ -735,10 +754,24 @@ class Technology extends CustomPostType{
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True;
+
+	public function fields() {
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Shortened Description',
+				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
+				'id'   => $prefix.'short_description',
+				'type' => 'text',
+			),
+		);
+	}
 }
 
 /**
  * Footer Resources Post Type
+ *
+ * @author Brandon Groves
  **/
 class FooterResource extends CustomPostType{
 	public 
@@ -753,6 +786,19 @@ class FooterResource extends CustomPostType{
 		$use_thumbnails = True,
 		$use_order      = True,
 		$use_title      = True,
-		$use_metabox    = True;
+		$use_metabox    = True,
+		$taxonomies		= array('resource_groups');
+
+	public function fields() {
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Shortened Description',
+				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
+				'id'   => $prefix.'short_description',
+				'type' => 'text',
+			),
+		);
+	}
 }
 ?>

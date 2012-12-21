@@ -110,4 +110,27 @@ class OrganizationalGroups extends CustomTaxonomy
 		$hierarchical = True;
 } // END class 
 
+/**
+ * Resource groups
+ *
+ * @author Brandon Groves
+ **/
+class ResourceGroups extends CustomTaxonomy {
+	public
+		$name				= 'resource_groups',
+		$general_name		= 'Resource Groups',
+		$singular_name		= 'Resource Group',
+		$search_items		= 'Search Resouce Groups',
+		$popular_items      = 'Popular Resouce Groups',
+		$all_times          = 'All Resouce Groups',
+		$parent_item        = 'Parent Resouce Group',
+		$parent_item_colon  = 'Parent Resouce Group:',
+		$edit_item          = 'Edit Resouce Group',
+		$update_item        = 'Update Resouce Group',
+		$add_new_item       = 'Add New Resouce Group',
+		$new_item_name      = 'New Tag Resouce Group',
+		
+		$hierarchical = True;
+}
+
 ?>

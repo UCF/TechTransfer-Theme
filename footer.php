@@ -1,4 +1,3 @@
-			<?php get_template_part('includes/above-the-footer'); ?>
 			<div id="footer">
 				
 				<?=wp_nav_menu(array(
