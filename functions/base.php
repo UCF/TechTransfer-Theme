@@ -1672,5 +1672,22 @@ function _show_meta_boxes($post, $meta_box){
 	<?php endif;?>
 	<?php
 }
+/**
+ * Returns the Resouce Group taxonomy terms
+ *
+ * @return array of terms where key = term name and value = term slug
+ *
+ * @author Brandon Groves
+ **/
+function get_resource_groups() {
+	$tax_terms = array();
+	$taxes = get_terms( 'resource_groups' );
+
+	foreach ($taxes as $tax) {
+		$tax_terms[$tax->name] = $tax->slug;
+	}
+
+	return $tax_terms;
+}
 
 ?>

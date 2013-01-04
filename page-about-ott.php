@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 <?php $content = get_the_content(); ?>
+<?php global $pageID; ?>
+<?php $pageID = get_the_ID(); ?>
 <div class="row tt-content">
 	<div id="about-nav" class="span3">
 		<ul class="nav nav-tabs nav-stacked">
@@ -20,4 +22,5 @@
 		<?php endwhile; ?>
 	</div>
 </div>
+<?php get_template_part('includes/above-the-footer'); ?>
 <?php get_footer(); ?>

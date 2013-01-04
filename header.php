@@ -52,8 +52,11 @@
 		<div class="container">
 			<div class="row">
 				<div id="header" class="row-border-bottom-top">
-						<h1 class="span8"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
-						<span id="tt-header-links" class="span4">
+						<h1 class="span6"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
+						<div class="span3" id="header-search">
+							<?php get_search_form(); ?>
+						</div>
+						<span id="tt-header-links" class="span3">
 							<?php $about = get_page_by_path('about-ott'); ?>
 							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
 							<?php $about = get_page_by_path('contact-us'); ?>

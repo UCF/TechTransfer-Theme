@@ -1,6 +1,8 @@
 <?php get_header(); ?>
-	<?php $options = get_option(THEME_OPTIONS_NAME);?>
-	<?php $page    = get_page_by_title('Home');?>
+	<?php $options = get_option(THEME_OPTIONS_NAME); ?>
+	<?php $page    = get_page_by_title('Home'); ?>
+	<?php global $pageID; ?>
+	<?php $pageID  = $page->ID; ?>
 	<div class="page-content" id="home" data-template="home-description">
 		<div class="row">
 			<div class="span7">
@@ -32,4 +34,5 @@
 		</div> -->
 	</div>
 <?php get_template_part('includes/above-the-footer'); ?>
+<?php get_template_part('includes/featured-tech'); ?>
 <?php get_footer();?>

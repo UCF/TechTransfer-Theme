@@ -271,6 +271,24 @@ class Document extends CustomPostType{
 			'id'      => $this->options('name').'_file',
 			'type'    => 'file',
 		);
+		$fields[] = array(
+			'name' => 'Tech to License',
+			'desc' => 'Indicates that this document should be displayed in the technology locator.',
+			'id'   => $this->options('name').'_license',
+			'type' => 'checkbox',
+		);
+		$fields[] = array(
+			'name' => 'Featured Tech to License',
+			'desc' => 'Indicates that this document should be displayed in the featured tech licensing documents section.',
+			'id'   => $this->options('name').'_featured',
+			'type' => 'checkbox',
+		);
+		$fields[] = array(
+			'name' => 'Form and Document',
+			'desc' => 'Indicates that this document should be displayed in the forms and documents section.',
+			'id'   => $this->options('name').'_form',
+			'type' => 'checkbox',
+		);
 		return $fields;
 	}
 	
@@ -479,12 +497,18 @@ class Page extends CustomPostType {
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True,
-		$built_in       = True,
-		$taxonomies		= array('resource_groups');
+		$built_in       = True;
 
 	public function fields() {
 		$prefix = $this->options('name').'_';
 		return array(
+			array(
+				'name'		=> 'Resource Posts',
+				'desc'		=> 'Choose what set of resources are displayed for the given page.',
+				'id'		=> $prefix.'resource',
+				'type'		=> 'select',
+				'options'	=> get_resource_groups(),
+			),
 			array(
 				'name' => 'Hide Lower Section',
 				'desc' => 'This section normally contains the Flickr, News and Events widgets. The footer will not be hidden',

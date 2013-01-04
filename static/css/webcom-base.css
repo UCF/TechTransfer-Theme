@@ -23,7 +23,7 @@ ul.dropdown-menu li a { margin-right: 0; white-space: pre-wrap; }
 
 .search-form label{display: none;}
 .search-form .search-field{width:50px;}
-.search-form .search-submit{}
+.search-form .search-submit{display: none;}
 
 .slideshow{overflow: hidden; margin: 0 0 1em 0;}
 
@@ -104,12 +104,17 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 #below-the-home-header p{font-size: 12px; line-height: 14px;}
 #below-the-home-header .textwidget{font-size: 12px; line-height: 14px;}
 
+#header-search {padding-top: 20px;}
+.search-form {margin: 0;}
+#s {background: white url('../img/search.gif') no-repeat 98% 50%;}
+
 /**
  * Resources Above the Footer
  */
 #below-the-content {margin-top: 10px; margin-bottom: 10px; border-top: 1px dotted #666;}
 .resource-row{margin-top: 10px;}
 .resource-box{background: #ffffcc;}
+.resource-box a:hover {text-decoration: none;}
 .resource-none{height: 0;}
 .resource{padding: 25px 20px;}
 .featured-text h4{margin: 0; padding: 0;}
@@ -120,6 +125,10 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 @media (max-width: 979px) {
 	.resource {
 		padding: 25px 5px;
+	}
+
+	.featured-text {
+		padding-left: 55px;
 	}
 }
 
@@ -135,7 +144,26 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 	.resource {
 		padding: 25px 20px;
 	}
+
+	.featured-text {
+		padding-left: 65px;
+	}
 }
+
+/**
+ * Featured Docs
+ **/
+#above-featured-docs {margin-top: 20px; margin-bottom: 10px; border-top: 1px dotted #666;}
+.featured-docs {list-style: none;}
+.featured-doc {padding-left: 24px; margin-top: 10px;}
+.featured-doc a {text-decoration: underline;}
+.featured-doc.pdf {background: url('../img/documents-pdf.png') no-repeat;}
+.featured-doc.word {background: url('../img/documents-word.png') no-repeat;}
+.featured-doc.document {background: url('../img/documents-doc.png') no-repeat;}
+.featured-doc.zip {background: url('../img/documents-zip.png') no-repeat;}
+.featured-doc.excel {background: url('../img/documents-excel.png') no-repeat;}
+.featured-doc.powerpoint {background: url('../img/documents-ppt.png') no-repeat;}
+.featured-doc.html {background: url('../img/documents-html.png') no-repeat;}
 
 /**
  * Footer
