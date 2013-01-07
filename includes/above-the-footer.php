@@ -21,7 +21,6 @@
 		<div class="row resource-row">
 			<?php for($j = 0; $j < 4; $j++) : ?>
 				<?php if($footerResources->have_posts() and !$lastPost) : $footerResources->the_post(); ?>
-				<?php if(in_array('Home', wp_get_post_terms($post->ID, 'resource_groups', array('fields' => 'names')))) : ?>
 				<div class="span3 box resource-box">
 					<?php if ($href = get_post_meta(get_the_ID(), "_links_to", true) != null) : ?>
 					<a href="<?=get_post_meta(get_the_ID(), "_links_to", true); ?>">
@@ -42,7 +41,6 @@
 					</a>
 					<?php endif; ?>
 				</div>
-				<?php endif; ?>
 				<?php endif; ?>
 			<?php endfor; ?>
 		</div>

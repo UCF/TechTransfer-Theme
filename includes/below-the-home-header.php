@@ -29,16 +29,12 @@
 			<?php endwhile; ?>
 		</div>
 		<div class="span4">
-			<?php $aboutPage = new WP_Query(array( 'pagename' => 'about-ott', 'posts_per_page' => 1 )); ?>
+			<?php $aboutPage = new WP_Query(array( 'post_type' => 'news', 'posts_per_page' => 1 )); ?>
 			<?php while($aboutPage->have_posts()) : $aboutPage->the_post(); ?>
 				<a href="<?=get_permalink( $post->ID ); ?>">
 				<?=the_post_thumbnail(array( 300, 300 )); ?>
-				<?php if($altTitle = get_post_meta($post->ID, 'page_alt_title', true)) : ?>
-				<h2><?=$altTitle; ?></h2>
-				<?php else : ?>
-				<h2><?=the_title(); ?></h2>
-				<?php endif; ?>
-				<?php if($shortDescription = get_post_meta($post->ID, 'page_short_description', true)) : ?>
+				<h2>News: <b><?=the_title(); ?></b></h2>
+				<?php if($shortDescription = get_post_meta($post->ID, 'news_short_description', true)) : ?>
 				<p><?=$shortDescription; ?></p>
 				<?php else : ?>
 				<p><?=get_the_content(); ?></p>

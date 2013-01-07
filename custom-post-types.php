@@ -511,18 +511,6 @@ class Page extends CustomPostType {
 				'options'	=> get_resource_groups(),
 			),
 			array(
-				'name' => 'Alternate Title',
-				'desc' => 'This section is to display an alternate title on the Home Page for the About Page only. If nothing is entered then the main title is used.',
-				'id'   => $prefix.'alt_title',
-				'type' => 'text',
-			),
-			array(
-				'name' => 'Shortened Description',
-				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
-				'id'   => $prefix.'short_description',
-				'type' => 'text',
-			),
-			array(
 				'name' => 'Hide Lower Section',
 				'desc' => 'This section normally contains the Flickr, News and Events widgets. The footer will not be hidden',
 				'id'   => $prefix.'hide_fold',
@@ -785,6 +773,39 @@ class Technology extends CustomPostType{
 		$add_new_item   = 'Add New Technology',
 		$edit_item      = 'Edit Technology',
 		$new_item       = 'New Technology',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_metabox    = True;
+
+	public function fields() {
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Shortened Description',
+				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
+				'id'   => $prefix.'short_description',
+				'type' => 'text',
+			),
+		);
+	}
+}
+
+/**
+ * News Post Type
+ *
+ * @author Brandon Groves
+ **/
+class News extends CustomPostType{
+	public 
+		$name           = 'news',
+		$plural_name    = 'News',
+		$singular_name  = 'News',
+		$add_new_item   = 'Add New News',
+		$edit_item      = 'Edit News',
+		$new_item       = 'New News',
 		$public         = True,
 		$use_editor     = True,
 		$use_thumbnails = True,
