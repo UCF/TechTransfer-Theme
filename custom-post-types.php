@@ -714,8 +714,8 @@ class Post extends CustomPostType {
 class About extends CustomPostType{
 	public 
 		$name           = 'about',
-		$plural_name    = 'About',
-		$singular_name  = 'Abo Topic',
+		$plural_name    = 'About Page',
+		$singular_name  = 'About Page',
 		$add_new_item   = 'Add New Topic',
 		$edit_item      = 'Edit Topic',
 		$new_item       = 'New Topic',
@@ -834,11 +834,11 @@ class News extends CustomPostType{
 class FooterResource extends CustomPostType{
 	public 
 		$name           = 'footerresource',
-		$plural_name    = 'Footer Resources',
-		$singular_name  = 'Footer Resource',
-		$add_new_item   = 'Add New Footer Resource',
-		$edit_item      = 'Edit Footer Resource',
-		$new_item       = 'New Footer Resource',
+		$plural_name    = 'Resource Buttons',
+		$singular_name  = 'Resource Button',
+		$add_new_item   = 'Add New Resource Button',
+		$edit_item      = 'Edit Resource Button',
+		$new_item       = 'New Resource Button',
 		$public         = True,
 		$use_editor     = True,
 		$use_thumbnails = True,
