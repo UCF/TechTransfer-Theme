@@ -108,6 +108,10 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 .search-form {margin: 0;}
 #s {background: white url('../img/search.gif') no-repeat 98% 50%;}
 .content-title {font-weight: normal;}
+@media (max-width: 767px) {
+	#for-industry-button {float: left; width: 50%;}
+	#for-researchers-button {float: left; width: 50%;}
+}
 
 /**
  * Resources Above the Footer

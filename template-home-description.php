@@ -13,11 +13,11 @@
 					</div>
 				<?php endif; ?>
 			</div>
-			<div class="span2">
+			<div id="for-researchers-button" class="span2">
 				<?php $forResearchers = get_page_by_path('for-researchers'); ?>
 				<a href="<?=get_page_link($forResearchers->ID); ?>"><img src="<?=THEME_IMG_URL?>/home-for-researchers.png"></a>
 			</div>
-			<div class="span2">
+			<div id="for-industry-button" class="span2">
 				<?php $forIndustry = get_page_by_path('for-industry'); ?>
 				<a href="<?=get_page_link($forIndustry->ID); ?>"><img src="<?=THEME_IMG_URL?>/home-for-industry.png"></a>
 			</div>
