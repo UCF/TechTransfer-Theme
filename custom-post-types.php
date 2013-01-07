@@ -511,6 +511,18 @@ class Page extends CustomPostType {
 				'options'	=> get_resource_groups(),
 			),
 			array(
+				'name' => 'Alternate Title',
+				'desc' => 'This section is to display an alternate title on the Home Page for the About Page only. If nothing is entered then the main title is used.',
+				'id'   => $prefix.'alt_title',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Shortened Description',
+				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
+				'id'   => $prefix.'short_description',
+				'type' => 'text',
+			),
+			array(
 				'name' => 'Hide Lower Section',
 				'desc' => 'This section normally contains the Flickr, News and Events widgets. The footer will not be hidden',
 				'id'   => $prefix.'hide_fold',
