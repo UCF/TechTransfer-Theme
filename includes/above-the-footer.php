@@ -14,6 +14,9 @@
 			<div id="below-the-content" class="row-border-bottom-top">
 			</div>
 		</div>
+		<div class="row">
+			<h3 id="resource-header" class="span12">Learn How Tech Transfer Can Help You:</h3>
+		</div>
 		<?php for($i = 0; $i < $numPages; $i++) : ?>
 		<div class="row resource-row">
 			<?php for($j = 0; $j < 4; $j++) : ?>

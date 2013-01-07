@@ -120,15 +120,38 @@ class ResourceGroups extends CustomTaxonomy {
 		$name				= 'resource_groups',
 		$general_name		= 'Resource Groups',
 		$singular_name		= 'Resource Group',
-		$search_items		= 'Search Resouce Groups',
-		$popular_items      = 'Popular Resouce Groups',
-		$all_times          = 'All Resouce Groups',
-		$parent_item        = 'Parent Resouce Group',
-		$parent_item_colon  = 'Parent Resouce Group:',
-		$edit_item          = 'Edit Resouce Group',
-		$update_item        = 'Update Resouce Group',
-		$add_new_item       = 'Add New Resouce Group',
-		$new_item_name      = 'New Tag Resouce Group',
+		$search_items		= 'Search Resource Groups',
+		$popular_items      = 'Popular Resource Groups',
+		$all_times          = 'All Resource Groups',
+		$parent_item        = 'Parent Resource Group',
+		$parent_item_colon  = 'Parent Resource Group:',
+		$edit_item          = 'Edit Resource Group',
+		$update_item        = 'Update Resource Group',
+		$add_new_item       = 'Add New Resource Group',
+		$new_item_name      = 'New Tag Resource Group',
+		
+		$hierarchical = True;
+}
+
+/**
+ * Document Group
+ *
+ * @author Brandon Groves
+ **/
+class DocumentGroups extends CustomTaxonomy {
+	public
+		$name				= 'document_group',
+		$general_name		= 'Document Groups',
+		$singular_name		= 'Document Group',
+		$search_items		= 'Search Document Groups',
+		$popular_items      = 'Popular Document Groups',
+		$all_times          = 'All Document Groups',
+		$parent_item        = 'Parent Document Group',
+		$parent_item_colon  = 'Parent Document Group:',
+		$edit_item          = 'Edit Document Group',
+		$update_item        = 'Update Document Group',
+		$add_new_item       = 'Add New Document Group',
+		$new_item_name      = 'New Tag Document Group',
 		
 		$hierarchical = True;
 }

@@ -255,7 +255,8 @@ class Document extends CustomPostType{
 		$use_title      = True,
 		$use_editor     = False,
 		$use_shortcode  = True,
-		$use_metabox    = True;
+		$use_metabox    = True,
+		$taxonomies		= array( 'document_group' );
 	
 	public function fields(){
 		$fields   = parent::fields();

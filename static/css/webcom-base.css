@@ -107,11 +107,13 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 #header-search {padding-top: 20px;}
 .search-form {margin: 0;}
 #s {background: white url('../img/search.gif') no-repeat 98% 50%;}
+.content-title {font-weight: normal;}
 
 /**
  * Resources Above the Footer
  */
 #below-the-content {margin-top: 10px; margin-bottom: 10px; border-top: 1px dotted #666;}
+#resource-header {font-weight: normal;}
 .resource-row{margin-top: 10px;}
 .resource-box{background: #ffffcc;}
 .resource-box a:hover {text-decoration: none;}
@@ -149,6 +151,19 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 		padding-left: 65px;
 	}
 }
+
+/**
+ * Document Search
+ **/
+.document-list ul {list-style-type: none;}
+.document-list ul li {}
+.document-list ul li.pdf {list-style-image: url('../img/documents-pdf.png');}
+.document-list ul li.word {list-style-image: url('../img/documents-word.png');}
+.document-list ul li.document {list-style-image: url('../img/documents-doc.png');}
+.document-list ul li.zip {list-style-image: url('../img/documents-zip.png');}
+.document-list ul li.excel {list-style-image: url('../img/documents-excel.png');}
+.document-list ul li.powerpoint {list-style-image: url('../img/documents-ppt.png');}
+.document-list ul li.html {list-style-image: url('../img/documents-html.png');}
 
 /**
  * Featured Docs

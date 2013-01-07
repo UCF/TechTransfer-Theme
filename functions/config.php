@@ -134,6 +134,7 @@ Config::$custom_post_types = array(
 Config::$custom_taxonomies = array(
 	'OrganizationalGroups',
 	'ResourceGroups',
+	'DocumentGroups'
 );
 
 Config::$body_classes = array('default',);

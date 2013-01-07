@@ -17,6 +17,9 @@
 
 	<?php $count = 0; ?>
 
+	<div id="featured-docs-header" class="row">
+		<h4 class="span12">Featured Technologies Available for Licensing</h4>
+	</div>
 	<div class="row featured-docs">
 	<?php foreach ($featured_docs as $doc) : ?>
 		<?php if ($count % 3 == 0 && $count !== 0) : ?>
