@@ -1,5 +1,5 @@
 <?php
-	$featured_docs = get_posts( array ( 'numberposts' => '-1', 'post_type' => 'document', 'meta_key' => 'document_featured', 'meta_value' => 'on', ));
+	$featured_docs = get_posts( array ( 'numberposts' => '12', 'post_type' => 'document', 'meta_key' => 'document_featured', 'meta_value' => 'on', ));
 
 	if (is_null($post_type_class = get_custom_post_type('document'))) {
 		return '<p>Invalid post type.</p>';
