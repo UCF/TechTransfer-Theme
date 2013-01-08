@@ -274,19 +274,19 @@ class Document extends CustomPostType{
 		);
 		$fields[] = array(
 			'name' => 'Tech to License',
-			'desc' => 'Indicates that this document should be displayed in the technology locator.',
+			'desc' => 'Indicates that this document will be displayed in the Technology Locator Page.',
 			'id'   => $this->options('name').'_license',
 			'type' => 'checkbox',
 		);
 		$fields[] = array(
 			'name' => 'Featured Tech to License',
-			'desc' => 'Indicates that this document should be displayed in the featured tech licensing documents section.',
+			'desc' => 'Indicates that this document will be displayed in the Featured Technology section on the Home Page.',
 			'id'   => $this->options('name').'_featured',
 			'type' => 'checkbox',
 		);
 		$fields[] = array(
 			'name' => 'Form and Document',
-			'desc' => 'Indicates that this document should be displayed in the forms and documents section.',
+			'desc' => 'Indicates that this document will be displayed in the Forms and Documents Page.',
 			'id'   => $this->options('name').'_form',
 			'type' => 'checkbox',
 		);
