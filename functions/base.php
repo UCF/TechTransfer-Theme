@@ -494,7 +494,7 @@ function bootstrap_menus() {
 
 				$item_output = $args->before;
 				$item_output .= '<a'. $attributes .'>';
-				$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+				$item_output .= $args->link_before . apply_filters( 'the_title', strtoupper($item->title), $item->ID ) . $args->link_after;
 				$item_output .= ($args->has_children) ? ' <b class="caret"></b></a>' : '</a>';
 				$item_output .= $args->after;
 

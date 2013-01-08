@@ -1,29 +1,18 @@
 			<div id="footer">
 				
-				<?=wp_nav_menu(array(
-					'theme_location' => 'footer-menu', 
-					'container' => 'false', 
-					'menu_class' => 'menu horizontal', 
-					'menu_id' => 'footer-menu', 
-					'fallback_cb' => false,
-					'depth' => 1,
-					'walker' => new Bootstrap_Walker_Nav_Menu()
-					));
-				?>
+				
 				<div class="row" id="footer-widget-wrap">
 					<div class="footer-widget-1 span8">
-						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column One')):?>
-							<span id="tt-footer-links">
-								<?php $about = get_page_by_path('about-ott'); ?>
-								<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
-								<?php $forResearchers = get_page_by_path('for-researchers'); ?>
-								<a href="<?=get_page_link($forResearchers->ID); ?>"><?=strtoupper(get_post_meta($forResearchers->ID, 'short', true)); ?></a>
-								<?php $forIndustry = get_page_by_path('for-industry'); ?>
-								<a href="<?=get_page_link($forIndustry->ID); ?>"><?=strtoupper(get_post_meta($forIndustry->ID, 'short', true)); ?></a>
-								<?php $contactUs = get_page_by_path('contact-us'); ?>
-								<a href="<?=get_page_link($contactUs->ID); ?>"><?=strtoupper($contactUs->post_title); ?></a>
-							</span>
-						<?php endif; ?>
+						<?=wp_nav_menu(array(
+							'theme_location' => 'footer-menu', 
+							'container' => 'false', 
+							'menu_class' => 'menu horizontal', 
+							'menu_id' => 'footer-menu', 
+							'fallback_cb' => false,
+							'depth' => 1,
+							'walker' => new Bootstrap_Walker_Nav_Menu()
+							));
+						?>
 					</div>
 					<div class="footer-widget-2 span4">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Two')):?>
