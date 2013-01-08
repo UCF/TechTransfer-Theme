@@ -92,7 +92,7 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 /**
  * Header
  **/
-#header span{padding-top: 30px; text-align: right;}
+div#tt-header-links {padding-top: 30px; text-align: right;}
 #tt-header-links a{font-size: 14px; margin-left: 25px;}
 #tt-header-links a:hover{text-decoration: underline;}
 

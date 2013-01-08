@@ -24,14 +24,6 @@
 			<div class="span1"></div>
 		</div>
 		<?php get_template_part('includes/below-the-home-header'); ?>
-		<!-- <div class="row">
-			<div class="bottom span12">
-				<?php $content = str_replace(']]>', ']]&gt;', apply_filters('the_content', $page->post_content));?>
-				<?php if($content):?>
-				<?=$content?>
-				<?php endif;?>
-			</div>
-		</div> -->
 	</div>
 <?php get_template_part('includes/above-the-footer'); ?>
 <?php get_template_part('includes/featured-tech'); ?>

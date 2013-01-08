@@ -56,11 +56,11 @@
 						<div class="span3" id="header-search">
 							<?php get_search_form(); ?>
 						</div>
-						<span id="tt-header-links" class="span3">
+						<div id="tt-header-links" class="span3">
 							<?php $about = get_page_by_path('about-ott'); ?>
 							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
 							<?php $about = get_page_by_path('contact-us'); ?>
 							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
-						<span>
+						</div>
 				</div>
 			</div>
