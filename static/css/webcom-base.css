@@ -100,7 +100,7 @@ div#tt-header-links {padding-top: 30px; text-align: right;}
 #tt-header-description{font-size: 24px; font-family: "Times", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"; font-style: italic; line-height: 1.25em; color: #274245;}
 
 #below-the-home-header{margin-top: 20px; }
-#below-the-home-header h2{font-size: 16px; line-height: 10px; font-weight: normal;}
+#below-the-home-header h2{font-size: 16px; line-height: 10px; font-weight: normal; margin-bottom: 6px;}
 #below-the-home-header p{font-size: 12px; line-height: 14px;}
 #below-the-home-header .textwidget{font-size: 12px; line-height: 14px;}
 
