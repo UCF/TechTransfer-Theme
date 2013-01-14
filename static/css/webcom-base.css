@@ -101,7 +101,8 @@ div#tt-header-links {padding-top: 30px; text-align: right;}
 
 #below-the-home-header{margin-top: 20px; }
 #below-the-home-header h2{font-size: 16px; line-height: 14px; font-weight: normal; margin-bottom: 6px;}
-#below-the-home-header p{font-size: 12px; line-height: 14px;}
+#below-the-home-header p{font-size: 12px; line-height: 16px;}
+#below-the-home-header a{font-weight: normal;}
 #below-the-home-header .textwidget{font-size: 12px; line-height: 14px;}
 
 #header-search {padding-top: 20px;}
@@ -120,6 +121,7 @@ div#tt-header-links {padding-top: 30px; text-align: right;}
 #resource-header {font-weight: normal;}
 .resource-row{margin-top: 10px;}
 .resource-box{background: #ffffcc;}
+.resource-box a{font-weight: normal;}
 .resource-box a:hover {text-decoration: none;}
 .resource-none{height: 0;}
 .resource{padding: 25px 20px;}
@@ -172,10 +174,10 @@ div#tt-header-links {padding-top: 30px; text-align: right;}
 /**
  * Featured Docs
  **/
-#above-featured-docs {margin-top: 20px; margin-bottom: 10px; border-top: 1px dotted #666;}
+#above-featured-docs {margin-top: 20px; margin-bottom: 15px; border-top: 1px dotted #666;}
 .featured-docs {list-style: none;}
-.featured-doc {padding-left: 24px; margin-top: 10px;}
-.featured-doc a {text-decoration: underline;}
+.featured-doc {padding-left: 24px; margin-top: 13px;}
+.featured-doc a {text-decoration: underline; font-weight: normal;}
 .featured-doc.pdf {background: url('../img/documents-pdf.png') no-repeat;}
 .featured-doc.word {background: url('../img/documents-word.png') no-repeat;}
 .featured-doc.document {background: url('../img/documents-doc.png') no-repeat;}
