@@ -745,6 +745,7 @@ class Inventor extends CustomPostType{
 		$use_thumbnails = True,
 		$use_order      = True,
 		$use_title      = True,
+		$use_shortcode	= True,
 		$use_metabox    = True;
 
 	public function fields() {
@@ -778,6 +779,7 @@ class Technology extends CustomPostType{
 		$use_thumbnails = True,
 		$use_order      = True,
 		$use_title      = True,
+		$use_shortcode	= True,
 		$use_metabox    = True;
 
 	public function fields() {
@@ -811,6 +813,7 @@ class News extends CustomPostType{
 		$use_thumbnails = True,
 		$use_order      = True,
 		$use_title      = True,
+		$use_shortcode	= True,
 		$use_metabox    = True;
 
 	public function fields() {
