@@ -504,8 +504,8 @@ class Page extends CustomPostType {
 		$prefix = $this->options('name').'_';
 		return array(
 			array(
-				'name'		=> 'Resource Posts',
-				'desc'		=> 'Choose what set of resources are displayed for the given page.',
+				'name'		=> 'Resource Buttons',
+				'desc'		=> 'Choose what set of Resource Buttons are displayed for the given page.',
 				'id'		=> $prefix.'resource',
 				'type'		=> 'select',
 				'options'	=> get_resource_groups(),
