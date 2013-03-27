@@ -240,7 +240,7 @@ function sc_post_type_search($params=array(), $content='') {
 	$by_term = array();
 	foreach(get_terms($params['taxonomy'], array('parent' => 0)) as $term) {
         $by_term[$term->name] = array();
-        foreach(get_terms($params['taxonomy'], array('parent' => $term->term_id)) as $child_term) {
+        foreach(get_term_children($term->term_id, $params['taxonomy']) as $child_term_id) {
             $posts = get_posts(array(
                 'numberposts' => -1,
                 'post_type'   => $params['post_type_name'],
@@ -248,7 +248,7 @@ function sc_post_type_search($params=array(), $content='') {
                     array(
                         'taxonomy' => $params['taxonomy'],
                         'field'    => 'id',
-                        'terms'    => $term->term_id
+                        'terms'    => $child_term_id
                     )
                 ),
                 'meta_key'    => $params['meta_key'],
@@ -257,6 +257,7 @@ function sc_post_type_search($params=array(), $content='') {
                 'order'       => $params['order']
             ));
 
+            $child_term = get_term_by('id', $child_term_id, $params['taxonomy']);
             if(count($posts) == 0 && $params['show_empty_sections']) {
                 $by_term[$term->name][$child_term->name] = array();
             } else {
