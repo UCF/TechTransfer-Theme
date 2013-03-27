@@ -13,6 +13,11 @@
 							'walker' => new Bootstrap_Walker_Nav_Menu()
 							));
 						?>
+
+                        <?php $options = get_option(THEME_OPTIONS_NAME);?>
+                        <? if($options['facebook_url']): ?>
+                        <a id="tt-facebook" href="<?=$options['facebook_url']; ?>"></a>
+                        <? endif; ?>
 					</div>
 					<div class="footer-widget-2 span4">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Two')):?>

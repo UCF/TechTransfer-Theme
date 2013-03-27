@@ -2,7 +2,7 @@
 Theme Name: Tech Transfer Theme
 Author: UCF Web Communications
 Github Theme URI: https://github.com/UCF/TechTransfer-Theme.git
-Version: v1.0.8
+Version: v1.0.9
 
 /* UCF Header Styles */
 
@@ -149,3 +149,4 @@ ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 0; list-style-
 .tt-search-subheader { color: #333; }
 .tt-search-divider { border-top: 1px dotted #CCC; }
 .tt-search-docs li {margin-top: 10px; }
+a#tt-facebook { background: url('static/img/social-32x32.png') 0px -18px no-repeat; width: 18px; height: 18px; display: inline-block; float: left; margin-left: 0;}
