@@ -144,3 +144,8 @@ select#UCFHBHeaderLinks {
 
 #archives-link { margin-top: 40px; }
 ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 0; list-style-type: none; }
+
+.tt-search-header { color: #666; }
+.tt-search-subheader { color: #333; }
+.tt-search-divider { border-top: 1px dotted #CCC; }
+.tt-search-docs li {margin-top: 10px; }

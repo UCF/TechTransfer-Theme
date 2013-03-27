@@ -179,11 +179,12 @@ function sc_post_type_search($params=array(), $content='') {
 	$defaults = array(
 		'post_type_name'         => 'post',
 		'taxonomy'               => 'category',
+        'parent_term'            => '',
 		'show_empty_sections'    => false,
 		'non_alpha_section_name' => 'Other',
 		'column_width'           => 'span4',
 		'column_count'           => '3',
-		'order_by'               => 'post_title',
+		'order_by'               => 'title',
 		'order'                  => 'ASC',
 		'show_sorting'           => True,
 		'default_sorting'        => 'term',
@@ -199,7 +200,7 @@ function sc_post_type_search($params=array(), $content='') {
 	$params['show_sorting']        = (bool)$params['show_sorting'];
 
 	if(!in_array($params['default_sorting'], array('term', 'alpha'))) {
-		$params['default_sorting'] = $default['default_sorting'];
+		$params['default_sorting'] = $defaults['default_sorting'];
 	}
 
 	// Resolve the post type class
@@ -219,7 +220,7 @@ function sc_post_type_search($params=array(), $content='') {
 	$search_data = array();
 	foreach(get_posts(array('numberposts' => -1, 'post_type' => $params['post_type_name'], 'meta_key' => $params['meta_key'], 'meta_value' => $params['meta_value'])) as $post) {
 		$search_data[$post->ID] = array($post->post_title);
-		foreach(wp_get_object_terms($post->ID, 'post_tag') as $term) {
+		foreach(wp_get_object_terms($post->ID, $params['taxonomy']) as $term) {
 			$search_data[$post->ID][] = $term->name;
 		}
 	}
@@ -237,28 +238,31 @@ function sc_post_type_search($params=array(), $content='') {
 
 	// Split up this post type's posts by term
 	$by_term = array();
-	foreach(get_terms($params['taxonomy']) as $term) {
-		$posts = get_posts(array(
-			'numberposts' => -1,
-			'post_type'   => $params['post_type_name'],
-			'tax_query'   => array(
-				array(
-					'taxonomy' => $params['taxonomy'],
-					'field'    => 'id',
-					'terms'    => $term->term_id
-				)
-			),
-			'meta_key'    => $params['meta_key'],
-			'meta_value'  => $params['meta_value'],
-			'orderby'     => $params['order_by'],
-			'order'       => $params['order']
-		));
+	foreach(get_terms($params['taxonomy'], array('parent' => 0)) as $term) {
+        $by_term[$term->name] = array();
+        foreach(get_terms($params['taxonomy'], array('parent' => $term->term_id)) as $child_term) {
+            $posts = get_posts(array(
+                'numberposts' => -1,
+                'post_type'   => $params['post_type_name'],
+                'tax_query'   => array(
+                    array(
+                        'taxonomy' => $params['taxonomy'],
+                        'field'    => 'id',
+                        'terms'    => $term->term_id
+                    )
+                ),
+                'meta_key'    => $params['meta_key'],
+                'meta_value'  => $params['meta_value'],
+                'orderby'     => $params['order_by'],
+                'order'       => $params['order']
+            ));
 
-		if(count($posts) == 0 && $params['show_empty_sections']) {
-			$by_term[$term->name] = array();
-		} else {
-			$by_term[$term->name] = $posts;
-		}
+            if(count($posts) == 0 && $params['show_empty_sections']) {
+                $by_term[$term->name][$child_term->name] = array();
+            } else {
+                $by_term[$term->name][$child_term->name] = $posts;
+            }
+        }
 	}
 
 	// Split up this post type's posts by the first alpha character
@@ -331,33 +335,67 @@ function sc_post_type_search($params=array(), $content='') {
 				break;
 		}
 		?>
-		<div class="<?=$id?>"<? if($hide) echo ' style="display:none;"'; ?>>
-			<? foreach($section as $section_title => $section_posts) { ?>
-				<? if(count($section_posts) > 0 || $params['show_empty_sections']) { ?>
-					<div>
-						<h3><?=esc_html($section_title)?></h3>
-						<div class="row">
-							<? if(count($section_posts) > 0) { ?>
-								<? $posts_per_column = ceil(count($section_posts) / $params['column_count']); ?>
-								<? foreach(range(0, $params['column_count'] - 1) as $column_index) { ?>
-									<? $start = $column_index * $posts_per_column; ?>
-									<? $end   = $start + $posts_per_column; ?>
-									<? if(count($section_posts) > $start) { ?>
-									<div class="<?=$params['column_width']?> document-list">
-										<ul>
-										<? foreach(array_slice($section_posts, $start, $end) as $post) { ?>
-											<li class="<?=$post_type->get_document_application($post); ?>" data-post-id="<?=$post->ID?>"><?=$post_type->toHTML($post)?></li>
-										<? } ?>
-										</ul>
-									</div>
-									<? } ?>
-								<? } ?>
-							<? } ?>
-						</div>
-					</div>
-				<? } ?>
-			<? } ?>
-		</div>
+        <? if($id == 'post-type-search-term') { ?>
+            <div class="<?=$id?>"<? if($hide) echo ' style="display:none;"'; ?>>
+                <? foreach($section as $section_title => $sub_section) { ?>
+                    <div>
+                        <h3 class="tt-search-header"><?=esc_html($section_title)?></h3>
+                        <div class="row"><div class="span12 tt-search-divider"></div></div>
+                        <? foreach($sub_section as $sub_section_title => $sub_section_posts) { ?>
+                            <? if(count($sub_section_posts) > 0 || $params['show_empty_sections']) { ?>
+                            <h4 class="tt-search-subheader"><?=esc_html(strtoupper($sub_section_title)); ?></h4>
+                            <div class="row tt-search-docs">
+                                <? if(count($sub_section_posts) > 0) { ?>
+                                    <? $posts_per_column = ceil(count($sub_section_posts) / $params['column_count']); ?>
+                                    <? foreach(range(0, $params['column_count'] - 1) as $column_index) { ?>
+                                        <? $start = $column_index * $posts_per_column; ?>
+                                        <? $end   = $posts_per_column; ?>
+                                        <? if(count($sub_section_posts) > $start) { ?>
+                                        <div class="<?=$params['column_width']?> document-list">
+                                            <ul>
+                                            <? foreach(array_slice($sub_section_posts, $start, $end) as $post) { ?>
+                                                <li class="<?=$post_type->get_document_application($post); ?>"
+                                                    data-post-id="<?=$post->ID?>"><?=$post_type->toHTML($post)?></li>
+                                            <? } ?>
+                                            </ul>
+                                        </div>
+                                        <? } ?>
+                                    <? } ?>
+                                <? } ?>
+                            <? } ?>
+                            </div>
+                        <? } ?>
+                    </div>
+                <? } ?>
+            </div>
+        <? } else { ?>
+            <div class="<?=$id?>"<? if($hide) echo ' style="display:none;"'; ?>>
+                <? foreach($section as $section_title => $section_posts) { ?>
+                <? if(count($section_posts) > 0 || $params['show_empty_sections']) { ?>
+                    <div>
+                        <h3><?=esc_html($section_title)?></h3>
+                        <div class="row tt-search-docs">
+                            <? if(count($section_posts) > 0) { ?>
+                            <? $posts_per_column = ceil(count($section_posts) / $params['column_count']); ?>
+                            <? foreach(range(0, $params['column_count'] - 1) as $column_index) { ?>
+                                <? $start = $column_index * $posts_per_column; ?>
+                                <? $end   = $posts_per_column; ?>
+                                <? if(count($section_posts) > $start) { ?>
+                                    <div class="<?=$params['column_width']?> document-list">
+                                        <ul>
+                                            <? foreach(array_slice($section_posts, $start, $end) as $post) { ?>
+                                            <li class="<?=$post_type->get_document_application($post); ?>" data-post-id="<?=$post->ID?>"><?=$post_type->toHTML($post)?></li>
+                                            <? } ?>
+                                        </ul>
+                                    </div>
+                                    <? } ?>
+                                <? } ?>
+                            <? } ?>
+                        </div>
+                    </div>
+                    <? } ?>
+                <? } ?>
+        <? } ?>
 		<?
 	}
 	?> </div> <?
