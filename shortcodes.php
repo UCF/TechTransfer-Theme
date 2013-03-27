@@ -220,7 +220,7 @@ function sc_post_type_search($params=array(), $content='') {
 	$search_data = array();
 	foreach(get_posts(array('numberposts' => -1, 'post_type' => $params['post_type_name'], 'meta_key' => $params['meta_key'], 'meta_value' => $params['meta_value'])) as $post) {
 		$search_data[$post->ID] = array($post->post_title);
-		foreach(wp_get_object_terms($post->ID, $params['taxonomy']) as $term) {
+		foreach(wp_get_object_terms($post->ID, 'post_tag') as $term) {
 			$search_data[$post->ID][] = $term->name;
 		}
 	}
