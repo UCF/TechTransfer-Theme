@@ -357,6 +357,7 @@ function sc_post_type_search($params=array(), $content='') {
                 </div>
                 <? } ?>
             <? } ?>
+        </div>
 		<?
 	}
 	?> </div> <?
@@ -563,34 +564,35 @@ function sc_license_post_type_search($params=array(), $content='') {
                     </div>
                     <? } ?>
                 </div>
-                <? } else { ?>
-            <div class="<?=$id?>"<? if($hide) echo ' style="display:none;"'; ?>>
-                <? foreach($section as $section_title => $section_posts) { ?>
-                    <? if(count($section_posts) > 0 || $params['show_empty_sections']) { ?>
-                        <div>
-                            <h3><?=esc_html($section_title)?></h3>
-                            <div class="row tt-search-docs">
-                                <? if(count($section_posts) > 0) { ?>
-                                <? $posts_per_column = ceil(count($section_posts) / $params['column_count']); ?>
-                                <? foreach(range(0, $params['column_count'] - 1) as $column_index) { ?>
-                                    <? $start = $column_index * $posts_per_column; ?>
-                                    <? $end   = $posts_per_column; ?>
-                                    <? if(count($section_posts) > $start) { ?>
-                                        <div class="<?=$params['column_width']?> document-list">
-                                            <ul>
-                                                <? foreach(array_slice($section_posts, $start, $end) as $post) { ?>
-                                                <li class="<?=$post_type->get_document_application($post); ?>" data-post-id="<?=$post->ID?>"><?=$post_type->toHTML($post)?></li>
-                                                <? } ?>
-                                            </ul>
-                                        </div>
+            <? } else { ?>
+                <div class="<?=$id?>"<? if($hide) echo ' style="display:none;"'; ?>>
+                    <? foreach($section as $section_title => $section_posts) { ?>
+                        <? if(count($section_posts) > 0 || $params['show_empty_sections']) { ?>
+                            <div>
+                                <h3><?=esc_html($section_title)?></h3>
+                                <div class="row tt-search-docs">
+                                    <? if(count($section_posts) > 0) { ?>
+                                    <? $posts_per_column = ceil(count($section_posts) / $params['column_count']); ?>
+                                    <? foreach(range(0, $params['column_count'] - 1) as $column_index) { ?>
+                                        <? $start = $column_index * $posts_per_column; ?>
+                                        <? $end   = $posts_per_column; ?>
+                                        <? if(count($section_posts) > $start) { ?>
+                                            <div class="<?=$params['column_width']?> document-list">
+                                                <ul>
+                                                    <? foreach(array_slice($section_posts, $start, $end) as $post) { ?>
+                                                    <li class="<?=$post_type->get_document_application($post); ?>" data-post-id="<?=$post->ID?>"><?=$post_type->toHTML($post)?></li>
+                                                    <? } ?>
+                                                </ul>
+                                            </div>
+                                            <? } ?>
                                         <? } ?>
                                     <? } ?>
-                                <? } ?>
+                                </div>
                             </div>
-                        </div>
+                            <? } ?>
                         <? } ?>
+                </div>
                     <? } ?>
-                <? } ?>
             <?
         }
         ?> </div> <?
