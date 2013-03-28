@@ -434,7 +434,6 @@ function sc_license_post_type_search($params=array(), $content='') {
     // Split up this post type's posts by term
     $by_term = array();
     foreach(get_terms($params['taxonomy'], array('parent' => 0)) as $term) {
-        $by_term[$term->name] = array();
         foreach(get_term_children($term->term_id, $params['taxonomy']) as $child_term_id) {
             $posts = get_posts(array(
                 'numberposts' => -1,
@@ -455,7 +454,7 @@ function sc_license_post_type_search($params=array(), $content='') {
             $child_term = get_term_by('id', $child_term_id, $params['taxonomy']);
             if(count($posts) == 0 && $params['show_empty_sections']) {
                 $by_term[$term->name][$child_term->name] = array();
-            } else {
+            } else if (count($posts)) {
                 $by_term[$term->name][$child_term->name] = $posts;
             }
         }
