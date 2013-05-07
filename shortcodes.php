@@ -25,7 +25,7 @@ function sc_slideshow($attr, $content=null){
 	$html    = $content->childNodes->item(1);
 	$body    = $html->childNodes->item(0);
 	$content = $body->childNodes;
-	
+
 	# Find top level elements and add appropriate class
 	$items = array();
 	foreach($content as $item){
@@ -36,13 +36,13 @@ function sc_slideshow($attr, $content=null){
 			$items[] = $item->ownerDocument->saveXML($item);
 		}
 	}
-	
+
 	$animation = ($attr['animation']) ? $attr['animation'] : 'slide';
 	$height    = ($attr['height']) ? $attr['height'] : '100px';
 	$width     = ($attr['width']) ? $attr['width'] : '100%';
 	$tran_len  = ($attr['transition']) ? $attr['transition'] : 1000;
 	$cycle_len = ($attr['cycle']) ? $attr['cycle'] : 5000;
-	
+
 	ob_start();
 	?>
 	<div 
@@ -57,7 +57,7 @@ function sc_slideshow($attr, $content=null){
 	</div>
 	<?php
 	$html = ob_get_clean();
-	
+
 	return $html;
 }
 add_shortcode('slideshow', 'sc_slideshow');
@@ -456,6 +456,7 @@ function sc_license_post_type_search($params=array(), $content='') {
                 $by_term[$term->name][$child_term->name] = array();
             } else if (count($posts)) {
                 $by_term[$term->name][$child_term->name] = $posts;
+                ksort($by_term[$term->name]);
             }
         }
     }
