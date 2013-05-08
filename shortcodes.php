@@ -539,7 +539,8 @@ function sc_license_post_type_search($params=array(), $content='') {
                         <div class="row"><div class="span12 tt-search-divider"></div></div>
                         <? foreach($sub_section as $sub_section_title => $sub_section_posts) { ?>
                         <? if(count($sub_section_posts) > 0 || $params['show_empty_sections']) { ?>
-                            <h4 class="tt-search-subheader"><?=esc_html(strtoupper($sub_section_title)); ?></h4>
+                            <? $subheader_tag = esc_html(str_replace(' ', '', $sub_section_title)); ?>
+                            <a href="#<?=sanitize_title($subheader_tag); ?>"><h4 id="<?=sanitize_title($subheader_tag); ?>" class="tt-search-subheader"><?=strtoupper(esc_html($sub_section_title)); ?></h4></a>
                             <div class="row tt-search-docs">
                                 <? if(count($sub_section_posts) > 0) { ?>
                                 <? $posts_per_column = ceil(count($sub_section_posts) / $params['column_count']); ?>
