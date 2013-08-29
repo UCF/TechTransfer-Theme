@@ -1648,14 +1648,36 @@ function _show_meta_boxes($post, $meta_box){
 					$document_id = get_post_meta($post->ID, $field['id'], True);
 					if ($document_id){
 						$document = get_post($document_id);
-						$url      = wp_get_attachment_url($document->ID);
+						$url      = str_replace('https://', 'http://', wp_get_attachment_url($document->ID));
 					}else{
 						$document = null;
 					}
 				?>
 				<?php if($document):?>
-				<a href="<?=$url?>"><?=$document->post_title?></a><br /><br />
-				<?php endif;?>
+				<?php
+					// Is this is a file upload field for a Resource Link?
+					if ($post->post_type == 'document') {
+						// Give a direct link to the Enable Media Upload replace screen
+						$enable_media_replace_dir = 'enable-media-replace/enable-media-replace.php';
+	
+						$media_edit_url = admin_url().'upload.php?page=enable-media-replace/enable-media-replace.php&action=media_replace&attachment_id='.$document->ID;
+						
+						// Create a secure URL (Enable Media Replace requires this)
+						$action = 'media_replace';
+						$nonce_edit_url = wp_nonce_url( $media_edit_url, $action );
+						if (FORCE_SSL_ADMIN) {
+							$nonce_edit_url = str_replace("http:", "https:", $nonce_edit_url);
+						}
+					}
+				?>
+				<?php if ($post->post_type == 'document') { ?>
+					<div class="description"><strong>NOTE:</strong> to replace the current file while maintaining the existing URL, click "Edit/Update File" (opens in a new window.)  To use a new file with a new URL, use the file uploader below.</div><br />
+					<a href="<?=$url?>"><?=$document->post_title?></a> &nbsp; <a target="_blank" class="button-secondary" href="<?=$nonce_edit_url?>">Edit / Update File</a> 
+				<?php } else { ?>
+					<a href="<?=$url?>"><?=$document->post_title?></a>
+				<?php } ?>
+				<br /><br />
+				<?php endif; ?>
 				<input type="file" id="file_<?=$post->ID?>" name="<?=$field['id']?>"><br />
 			
 			<?php break; case 'help':?><!-- Do nothing for help -->
