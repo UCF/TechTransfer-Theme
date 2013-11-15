@@ -33,16 +33,16 @@ if (is_uploaded_file($_FILES["userfile"]["tmp_name"])) {
 
 	// New method for validating that the uploaded file is allowed, using WP:s internal wp_check_filetype_and_ext() function.
 	$filedata = wp_check_filetype_and_ext($_FILES["userfile"]["tmp_name"], $_FILES["userfile"]["name"]);
-	
+
 	if ($filedata["ext"] == "") {
 		echo __("File type does not meet security guidelines. Try another.");
 		exit;
 	}
-	
+
 	$new_filename = $_FILES["userfile"]["name"];
 	$new_filesize = $_FILES["userfile"]["size"];
 	$new_filetype = $filedata["type"];
-	
+
 	// Drop-in replace and we don't even care if you uploaded something that is the wrong file-type.
 	// That's your own fault, because we warned you!
 
@@ -62,7 +62,7 @@ if (is_uploaded_file($_FILES["userfile"]["tmp_name"])) {
 
 	// Delete old file
 	unlink($current_file);
-		
+
 	// Delete old resized versions if this was an image
 	$suffix = substr($current_file, (strlen($current_file)-4));
 	$prefix = substr($current_file, 0, (strlen($current_file)-4));
@@ -91,9 +91,11 @@ if (is_uploaded_file($_FILES["userfile"]["tmp_name"])) {
 	// Make thumb and/or update metadata
 	wp_update_attachment_metadata( (int) $_POST["ID"], wp_generate_attachment_metadata( (int) $_POST["ID"], $current_file ) );
 
+    // Execute action that the attachement has been edited
+    do_action( 'edit_attachment', (int) $_POST["ID"]);
 
 	$returnurl = get_bloginfo("wpurl") . "/wp-admin/upload.php?posted=3";
-	
+
 } else {
 	//TODO Better error handling when no file is selected.
 	//For now just go back to media management
