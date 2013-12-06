@@ -94,7 +94,7 @@ add_action('after_setup_theme', '__init__');
 #define('DEBUG', True);                  # Always on
 #define('DEBUG', False);                 # Always off
 define('DEBUG', isset($_GET['debug'])); # Enable via get parameter
-define('THEME_URL', get_bloginfo('stylesheet_directory'));
+define('THEME_URL', get_stylesheet_directory_uri());
 define('THEME_ADMIN_URL', get_admin_url());
 define('THEME_DIR', get_stylesheet_directory());
 define('THEME_INCLUDES_DIR', THEME_DIR.'/includes');
@@ -472,8 +472,8 @@ if ($theme_options['gw_verify']){
 
 function jquery_in_header() {
     wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', 'http://code.jquery.com/jquery-1.7.1.min.js');
+    wp_register_script( 'jquery', '//code.jquery.com/jquery-1.7.1.min.js');
     wp_enqueue_script( 'jquery' );
-}    
- 
+}
+
 add_action('wp_enqueue_scripts', 'jquery_in_header');

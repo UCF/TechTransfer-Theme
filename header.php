@@ -24,7 +24,11 @@
 
 		</script>
 		<?php endif;?>
-		
+
+		<!--[if IE]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
 		<?  $post_type = get_post_type($post->ID);
 			if(($stylesheet_id = get_post_meta($post->ID, $post_type.'_stylesheet', True)) !== False
 				&& ($stylesheet_url = wp_get_attachment_url($stylesheet_id)) !== False) { ?>
