@@ -1,13 +1,13 @@
 			<div id="footer">
-				
-				
+
+
 				<div class="row" id="footer-widget-wrap">
 					<div class="footer-widget-1 span8">
 						<?=wp_nav_menu(array(
-							'theme_location' => 'footer-menu', 
-							'container' => 'false', 
-							'menu_class' => 'menu horizontal', 
-							'menu_id' => 'footer-menu', 
+							'theme_location' => 'footer-menu',
+							'container' => 'false',
+							'menu_class' => 'menu horizontal',
+							'menu_id' => 'footer-menu',
 							'fallback_cb' => false,
 							'depth' => 1,
 							'walker' => new Bootstrap_Walker_Nav_Menu()
@@ -26,7 +26,7 @@
 								<?php if($options['organization_name']): ?>
 									<?= $options['organization_name']; ?>
 								<?php endif;?>
-								
+
 								<?php if ($options['organization_name'] and $options['street_address'] and $options['city_address'] and $options['state_address'] and $options['zip_address']): ?>
 									| <?=$options['street_address'];?> | <?=$options['city_address'];?>, <?=$options['state_address'];?> <?=$options['zip_address'];?>
 								<?php elseif($options['street_address'] and $options['city_address'] and $options['state_address'] and $options['zip_address']): ?>

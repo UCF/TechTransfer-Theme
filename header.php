@@ -4,11 +4,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<?="\n".header_()."\n"?>
 		<?php if(GA_ACCOUNT or CB_UID):?>
-		
+
 		<script type="text/javascript">
 			var _sf_startpt = (new Date()).getTime();
 			<?php if(GA_ACCOUNT):?>
-			
+
 			var GA_ACCOUNT  = '<?=GA_ACCOUNT?>';
 			var _gaq        = _gaq || [];
 			_gaq.push(['_setAccount', GA_ACCOUNT]);
@@ -17,11 +17,11 @@
 			_gaq.push(['_trackPageview']);
 			<?php endif;?>
 			<?php if(CB_UID):?>
-			
+
 			var CB_UID      = '<?=CB_UID?>';
 			var CB_DOMAIN   = '<?=CB_DOMAIN?>';
 			<?php endif?>
-			
+
 		</script>
 		<?php endif;?>
 		
@@ -46,7 +46,7 @@
 		</script>
 
 		<script type="text/javascript" src="<?=THEME_JS_URL?>/techtransfer.js"></script>
-		
+
 	</head>
 	<body class="<?=body_classes()?>">
 		<div class="container">

@@ -4,7 +4,7 @@
  * Responsible for running code that needs to be executed as wordpress is
  * initializing.  Good place to register scripts, stylesheets, theme elements,
  * etc.
- * 
+ *
  * @return void
  * @author Jared Lang
  **/
@@ -79,10 +79,10 @@ function __init__(){
 	));
 	foreach(Config::$styles as $style){Config::add_css($style);}
 	foreach(Config::$scripts as $script){Config::add_script($script);}
-	
+
 	global $timer;
 	$timer = Timer::start();
-	
+
 	wp_deregister_script('l10n');
 	set_defaults_for_options();
 }
@@ -429,34 +429,31 @@ Config::$links = array(
 
 Config::$styles = array(
 	array('admin' => True, 'src' => THEME_CSS_URL.'/admin.css',),
-	'http://universityheader.ucf.edu/bar/css/bar.css',
 	THEME_STATIC_URL.'/bootstrap/bootstrap/css/bootstrap.css',
 );
 
 if ($theme_options['bootstrap_enable_responsive'] == 1) {
-	array_push(Config::$styles, 
+	array_push(Config::$styles,
 		THEME_STATIC_URL.'/bootstrap/bootstrap/css/bootstrap-responsive.css'
-	);		
+	);
 }
 
-array_push(Config::$styles,	
+array_push(Config::$styles,
 	plugins_url( 'gravityforms/css/forms.css' ),
-	THEME_CSS_URL.'/webcom-base.css', 
+	THEME_CSS_URL.'/webcom-base.css',
 	get_bloginfo('stylesheet_url')
 );
 
 if ($theme_options['bootstrap_enable_responsive'] == 1) {
-	array_push(Config::$styles, 
+	array_push(Config::$styles,
 		THEME_URL.'/style-responsive.css'
-	);	
+	);
 }
 
 Config::$scripts = array(
 	array('admin' => True, 'src' => THEME_JS_URL.'/admin.js',),
 	'//universityheader.ucf.edu/bar/js/university-header.js?use-bootstrap-overrides=1',
-	//array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.7.1.min.js',),
 	THEME_STATIC_URL.'/bootstrap/bootstrap/js/bootstrap.js',
-	//THEME_JS_URL.'/jquery-extras.js',
 	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
 	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
 );
