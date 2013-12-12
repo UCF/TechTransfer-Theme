@@ -23,7 +23,7 @@ function add_id_to_ucfhb($url) {
 add_filter('clean_url', 'add_id_to_ucfhb', 10, 3);
 
 
-function protocol_relative_attachment_url($url, $id) {
+function protocol_relative_attachment_url($url) {
     if (is_ssl()) {
         $url = str_replace('http://', 'https://', $url);
     }
