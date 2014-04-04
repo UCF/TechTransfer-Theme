@@ -383,7 +383,7 @@ function sc_license_post_type_search($params=array(), $content='') {
         'order'                  => 'ASC',
         'show_sorting'           => True,
         'default_sorting'        => 'term',
-        'show_sorting'           => True,
+        'show_sorting'           => False,
         'meta_key'               => '',
         'meta_value'             => '',
     );
@@ -502,6 +502,7 @@ function sc_license_post_type_search($params=array(), $content='') {
                 <input type="text" class="span3" placeholder="<?=$params['default_search_text']?>" />
             </form>
         </div>
+
         <div class="post-type-search-results "></div>
         <? if($params['show_sorting']) { ?>
         <div class="btn-group post-type-search-sorting">
@@ -532,6 +533,17 @@ function sc_license_post_type_search($params=array(), $content='') {
             }
             ?>
             <? if($id == 'post-type-search-term') { ?>
+                <div class="tt-search-header-index">
+            	<?php foreach($section as $section_title => $sub_section) { ?>
+            		<h3 name="<?=sanitize_title($section_title); ?>" id="<?=sanitize_title($section_title); ?>" class="tt-search-header"><?=esc_html($section_title)?></h3>
+            		<? foreach($sub_section as $sub_section_title => $sub_section_posts) { ?>
+            		<? if(count($sub_section_posts) > 0 || $params['show_empty_sections']) { ?>
+                            <? $subheader_tag = esc_html(str_replace(' ', '', $sub_section_title)); ?>
+                            <a href="#<?=sanitize_title($subheader_tag); ?>"><h4 class="tt-search-subheader btn btn-default btn-flat"><?=esc_html($sub_section_title); ?></h4></a>
+                   	<?php } ?>
+                   <?php } ?>
+            	<?php } ?>
+            	</div>
                 <div class="<?=$id?>"<? if($hide) echo ' style="display:none;"'; ?>>
                     <? foreach($section as $section_title => $sub_section) { ?>
                     <div>
