@@ -163,3 +163,20 @@ a#tt-facebook { background: url('static/img/social-32x32.png') 0px -18px no-repe
 .tt-search-header-index {
 	margin-bottom: 20px;
 }
+
+.back-to-top {
+    position: fixed;
+    bottom: 2em;
+    right: 0px;
+    text-decoration: none;
+    color: #000000;
+    background-color: rgba(235, 235, 235, 0.80);
+    font-size: 12px;
+    padding: 1em;
+    display: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.back-to-top:hover {
+    background-color: rgba(135, 135, 135, 0.50);
+}
