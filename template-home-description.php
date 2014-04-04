@@ -5,7 +5,7 @@
 	<?php $pageID  = $page->ID; ?>
 	<div class="page-content" id="home" data-template="home-description">
 		<div class="row">
-			<div class="span7">
+			<div class="span8">
 				<?php $description = $options['site_description']; ?>
 				<?php if ($description): ?>
 					<div id="tt-header-description">
@@ -13,15 +13,16 @@
 					</div>
 				<?php endif; ?>
 			</div>
-			<div id="for-researchers-button" class="span2">
-				<?php $forResearchers = get_page_by_path('for-researchers'); ?>
-				<a href="<?=get_page_link($forResearchers->ID); ?>"><img src="<?=THEME_IMG_URL?>/home-for-researchers.png"></a>
+			<div class="span4">
+				<div id="for-researchers-button">
+					<?php $forResearchers = get_page_by_path('for-researchers'); ?>
+					<a href="<?=get_page_link($forResearchers->ID); ?>" class="btn btn-default btn-home">Researchers</a>
+				</div>
+				<div id="for-industry-button">
+					<?php $forIndustry = get_page_by_path('for-industry'); ?>
+					<a href="<?=get_page_link($forIndustry->ID); ?>" class="btn btn-default btn-home">Industry</a>
+				</div>
 			</div>
-			<div id="for-industry-button" class="span2">
-				<?php $forIndustry = get_page_by_path('for-industry'); ?>
-				<a href="<?=get_page_link($forIndustry->ID); ?>"><img src="<?=THEME_IMG_URL?>/home-for-industry.png"></a>
-			</div>
-			<div class="span1"></div>
 		</div>
 		<?php get_template_part('includes/below-the-home-header'); ?>
 	</div>

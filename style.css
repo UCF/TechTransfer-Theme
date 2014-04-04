@@ -151,6 +151,18 @@ ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 0; list-style-
 .tt-search-docs li {margin-top: 10px; }
 a#tt-facebook { background: url('static/img/social-32x32.png') 0px -18px no-repeat; width: 18px; height: 18px; display: inline-block; float: left; margin-left: 0;}
 
+.btn-home{
+	background: #ffcc00;
+	border: none;
+	display: inline-block;
+	margin-left: 10px;
+	float: right;
+	/* font-size: .8em;
+	margin-top: .5em;
+	margin-bottom: .5em;
+	font-weight: normal; */
+}
+
 .btn-flat{
 	background: #ededed;
 	border: none;
