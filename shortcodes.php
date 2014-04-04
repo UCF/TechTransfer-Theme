@@ -625,6 +625,12 @@ function sc_license_post_type_search($params=array(), $content='') {
 					jQuery('html, body').animate({scrollTop: 0}, duration);
 					return false;
 				});
+				jQuery('.btn-flat').click(function(event) {
+					event.preventDefault();
+					var scrollToElem = this.parentElement.hash;
+					jQuery('html, body').animate({scrollTop: $(scrollToElem).offset().top}, duration);
+					return false;
+				});
 		});
 		</script>
         <a href="#" class="back-to-top">Back to Top</a>
