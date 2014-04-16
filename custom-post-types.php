@@ -830,6 +830,40 @@ class News extends CustomPostType{
 }
 
 /**
+ * Success Story Post Type
+ *
+ * @author Jonathan Villadolid
+ **/
+class SuccessStory extends CustomPostType{
+	public
+		$name           = 'success_story',
+		$plural_name    = 'Success Stories',
+		$singular_name  = 'Success Story',
+		$add_new_item   = 'Add New Success Story',
+		$edit_item      = 'Edit Success Story',
+		$new_item       = 'New Success Story',
+		$public         = True,
+		$use_editor     = True,
+		$use_thumbnails = True,
+		$use_order      = True,
+		$use_title      = True,
+		$use_shortcode	= True,
+		$use_metabox    = True;
+
+	public function fields() {
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name' => 'Shortened Description',
+				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
+				'id'   => $prefix.'short_description',
+				'type' => 'text',
+			),
+		);
+	}
+}
+
+/**
  * Footer Resources Post Type
  *
  * @author Brandon Groves

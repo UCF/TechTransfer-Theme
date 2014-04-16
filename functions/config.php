@@ -124,6 +124,7 @@ Config::$custom_post_types = array(
 	'Inventor',
 	'Technology',
 	'News',
+	'SuccessStory',
 	'About',
 	'FooterResource',
 );
