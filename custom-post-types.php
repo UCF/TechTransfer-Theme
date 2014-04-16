@@ -670,6 +670,12 @@ class Person extends CustomPostType
 	}
 } // END class 
 
+/**
+ * Extend the default post type: "Post"
+ *
+ * @author Chris Conover
+ * @author Jonathan Villadolid
+ **/
 class Post extends CustomPostType {
 	public
 		$name           = 'post',
@@ -690,6 +696,12 @@ class Post extends CustomPostType {
 	public function fields() {
 		$prefix = $this->options('name').'_';
 		return array(
+			array(
+				'name' => 'Shortened Description',
+				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
+				'id'   => $prefix.'short_description',
+				'type' => 'text',
+			),
 			array(
 				'name' => 'Hide Lower Section',
 				'desc' => 'This section normally contains the Flickr, News and Events widgets. The footer will not be hidden',
