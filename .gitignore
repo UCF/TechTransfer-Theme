@@ -13,6 +13,10 @@ build/*
 *.xcworkspace
 xcuserdata
 
+# sublimetext noise
+*.sublime-project
+*.sublime-workspace
+
 # svn & cvs
 .svn
 CVS
