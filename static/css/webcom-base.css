@@ -110,11 +110,8 @@ div#tt-header-links {padding-top: 30px; text-align: right;}
 .content-title {font-weight: normal;}
 
 
-.btn-home { background: #ffcc00; border: none; display: inline-block; margin-left: 10px; float: right; }
+/* Technology Locator */
 .btn-flat { background: #ededed; border: none; font-size: .8em; margin-top: .5em; margin-bottom: .5em; font-weight: normal; }
-@media (max-width: 767px) {
-	.btn-home {float: left; margin-left: 0; margin-right: 10px;}
-}
 
 
 /**
