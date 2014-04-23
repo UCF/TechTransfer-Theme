@@ -150,11 +150,6 @@ ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 0; list-style-
 .tt-search-divider { border-top: 1px dotted #CCC; }
 .tt-search-docs li {margin-top: 10px; }
 a#tt-facebook { background: url('static/img/social-32x32.png') 0px -18px no-repeat; width: 18px; height: 18px; display: inline-block; float: left; margin-left: 0;}
-
-
-.btn-home { background: #ffcc00; border: none; display: inline-block; margin-left: 10px; float: right; }
-.btn-flat { background: #ededed; border: none; font-size: .8em; margin-top: .5em; margin-bottom: .5em; font-weight: normal; }
-
 a#tt-twitter { background: url('static/img/social-32x32.png') 0px 0px no-repeat; width: 18px; height: 18px; display: inline-block; float: left; margin-left: 6px;}
 
 .tt-search-header-index { margin-bottom: 20px; }
