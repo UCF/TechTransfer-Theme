@@ -55,16 +55,28 @@
 	<body class="<?=body_classes()?>">
 		<div class="container">
 			<div class="row">
-				<div id="header" class="row-border-bottom-top">
+				<div id="header">
 						<h1 class="span6"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
-						<div class="span3" id="header-search">
-							<?php get_search_form(); ?>
-						</div>
-						<div id="tt-header-links" class="span3">
+						<div id="tt-header-links-right" class="span6 tt-header-links">
 							<?php $about = get_page_by_path('about-ott'); ?>
 							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
 							<?php $about = get_page_by_path('contact-us'); ?>
 							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
 						</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span6 tt-header-links" id="tt-header-links-left">
+							<?php
+								$forResearchers = get_page_by_path('for-researchers');
+								$forIndustry = get_page_by_path('for-industry');
+								$techLocator = get_page_by_path('technology-locator');
+							?>
+							<a href="<?=get_page_link($forResearchers->ID); ?>">RESEARCHERS</a>
+							<a href="<?=get_page_link($forIndustry->ID); ?>">INDUSTRY</a>
+							<a href="<?=get_page_link($techLocator->ID); ?>">TECHNOLOGY</a>
+				</div>
+				<div class="span6" id="header-search">
+							<?php get_search_form(); ?>
 				</div>
 			</div>
