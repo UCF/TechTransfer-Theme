@@ -58,10 +58,13 @@
 				<div id="header">
 						<h1 class="span6"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 						<div id="tt-header-links-right" class="span6 tt-header-links">
-							<?php $about = get_page_by_path('about-ott'); ?>
-							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
-							<?php $about = get_page_by_path('contact-us'); ?>
-							<a href="<?=get_page_link($about->ID); ?>"><?=strtoupper($about->post_title); ?></a>
+							<?php $options = get_option(THEME_OPTIONS_NAME);?>
+							<? if($options['facebook_url']): ?>
+								<a id="tt-facebook" href="<?=$options['facebook_url']; ?>"></a>
+							<? endif; ?>
+							<?php if($options['twitter_url']):?>
+								<a id="tt-twitter" href="<?=$options['twitter_url']?>"></a>
+							<?php endif;?>
 						</div>
 				</div>
 			</div>
