@@ -1,7 +1,10 @@
+<?php
+ $blog = get_page_by_path('blog');
+ $archives = get_page_by_path('archives');
+?>
 <div class="row">
 	<div id="below-the-home-header" class="row-border-bottom-top">
 		<div class="span4">
-			<?php $blog = get_page_by_path('blog'); ?>
 			<a href="<?=get_page_link($blog->ID); ?>">
 				<?php $aboutPage = new WP_Query(array( 'post_type' => 'post', 'posts_per_page' => 1 )); ?>
 				<?php while($aboutPage->have_posts()) : $aboutPage->the_post(); ?>
@@ -13,6 +16,7 @@
 						<p><?=get_the_content(); ?></p>
 				<?php endif;
 				endwhile; ?>
+				<a href="<?=get_page_link($blog->ID); ?>">&raquo; Blog Archives</a>
 			</a>
 		</div>
 		<div class="span4">
@@ -28,6 +32,7 @@
 				<?php endif; ?>
 				</a>
 			<?php endwhile; ?>
+			<a href="<?=get_page_link($archives->ID); ?>">&raquo; Success Story Archives</a>
 		</div>
 		<div class="span4">
 			<?php $aboutPage = new WP_Query(array( 'post_type' => 'news', 'posts_per_page' => 1 )); ?>
@@ -42,6 +47,7 @@
 				<?php endif; ?>
 				</a>
 			<?php endwhile; ?>
+			<a href="<?=get_page_link($archives->ID); ?>">&raquo; News Archives</a>
 		</div>
 	</div>
 </div>
