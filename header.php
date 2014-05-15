@@ -69,17 +69,33 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="span6 tt-header-links" id="tt-header-links-left">
-							<?php
-								$forResearchers = get_page_by_path('for-researchers');
-								$forIndustry = get_page_by_path('for-industry');
-								$techLocator = get_page_by_path('technology-locator');
-							?>
-							<a href="<?=get_page_link($forResearchers->ID); ?>">RESEARCHERS</a>
-							<a href="<?=get_page_link($forIndustry->ID); ?>">INDUSTRY</a>
-							<a href="<?=get_page_link($techLocator->ID); ?>">TECHNOLOGY</a>
+				<div class="span8 tt-header-links" id="tt-header-links-left">
+					<?php
+						$forResearchers = get_page_by_path('for-researchers');
+						$forIndustry = get_page_by_path('for-industry');
+						$techLocator = get_page_by_path('technology-locator');
+						$about = get_page_by_path('about-ott');
+						$contact = get_page_by_path('contact-us');
+					?>
+					<ul class="list-unstyled list-inline">
+						<li>
+							<a href="<?=get_page_link($forResearchers->ID); ?>">FOR<br/>RESEARCHERS</a>
+						</li>
+						<li>
+							<a href="<?=get_page_link($forIndustry->ID); ?>">FOR<br/>INDUSTRY</a>
+						</li>
+						<li>
+							<a href="<?=get_page_link($techLocator->ID); ?>">TECHNOLOGY<br/>LOCATOR</a>
+						</li>
+						<li>
+							<a href="<?=get_page_link($about->ID); ?>">ABOUT<br/>OTT</a>
+						</li>
+						<li>
+							<a href="<?=get_page_link($contact->ID); ?>">CONTACT<br/>US</a>
+						</li>
+					</ul>
 				</div>
-				<div class="span6" id="header-search">
+				<div class="span4" id="header-search">
 							<?php get_search_form(); ?>
 				</div>
 			</div>
