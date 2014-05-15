@@ -285,6 +285,12 @@ class Document extends CustomPostType{
 			'type' => 'checkbox',
 		);
 		$fields[] = array(
+			'name' => 'Startup Primer Tech to License',
+			'desc' => 'Indicates that this document will be highlighted as Startup-Friendly on the Technology Locator Page.',
+			'id'   => $this->options('name').'_startup_primer',
+			'type' => 'checkbox',
+		);
+		$fields[] = array(
 			'name' => 'Form and Document',
 			'desc' => 'Indicates that this document will be displayed in the Forms and Documents Page.',
 			'id'   => $this->options('name').'_form',
