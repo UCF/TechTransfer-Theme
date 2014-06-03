@@ -164,3 +164,6 @@ ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 0; list-style-
 .post { clear: right; }
 .entry-content .wp-post-image { float: right; clear: right; }
 .comments_link { clear: right;}
+.fb_iframe_widget > span { margin-right: 30px;}
+.share { width: 90px !important;}
+.share-inline iframe {margin-bottom: -5px !important;}
