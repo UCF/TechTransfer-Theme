@@ -364,6 +364,12 @@ Config::$theme_settings = array(
 			'description' => 'URL to the twitter user account you would like to direct visitors to.  Example: <em>http://twitter.com/csbrisketbus</em>',
 			'value'       => $theme_options['twitter_url'],
 		)),
+		new TextField(array(
+			'name'        => 'Google Plus URL',
+			'id'          => THEME_OPTIONS_NAME.'[gplus_url]',
+			'description' => 'URL to the google plus user account you would like to direct visitors to.  Example: <em>http://plus.google.com/csbrisketbus</em>',
+			'value'       => $theme_options['gplus_url'],
+		)),
 		new RadioField(array(
 			'name'        => 'Enable Flickr',
 			'id'          => THEME_OPTIONS_NAME.'[enable_flickr]',

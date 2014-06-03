@@ -149,8 +149,10 @@ ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 0; list-style-
 .tt-search-subheader { color: #333; }
 .tt-search-divider { border-top: 1px dotted #CCC; }
 .tt-search-docs li {margin-top: 10px; }
-a#tt-facebook { background: url('static/img/social-32x32.png') 0px -18px no-repeat; width: 18px; height: 18px; display: inline-block; float: right; margin-left: 0;}
-a#tt-twitter { background: url('static/img/social-32x32.png') 0px 0px no-repeat; width: 18px; height: 18px; display: inline-block; float: right; margin-left: 6px;}
+
+#tt-facebook {background: url('static/img/social-facebook.png') 0px 0px no-repeat; background-size: contain; width: 25px; height: 25px; display: inline-block; float: right; margin-left: 5px;}
+#tt-twitter {background: url('static/img/social-twitter.png') 0px 0px no-repeat; background-size: contain; width: 25px; height: 25px; display: inline-block; float: right; margin-left: 5px;}
+#tt-gplus {background: url('static/img/social-gplus.png') 0px 0px no-repeat; background-size: contain; width: 25px; height: 25px; display: inline-block; float: right; margin-left: 5px;}
 
 .tt-search-header-index { margin-bottom: 20px; }
 

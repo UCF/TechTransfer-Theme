@@ -59,12 +59,15 @@
 						<h1 class="span6"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 						<div id="tt-header-links-right" class="span6 tt-header-links">
 							<?php $options = get_option(THEME_OPTIONS_NAME);?>
-							<? if($options['facebook_url']): ?>
-								<a id="tt-facebook" href="<?=$options['facebook_url']; ?>"></a>
-							<? endif; ?>
+							<?php if($options['gplus_url']):?>
+								<a id="tt-gplus" href="<?=$options['gplus_url']?>"></a>
+							<?php endif;?>
 							<?php if($options['twitter_url']):?>
 								<a id="tt-twitter" href="<?=$options['twitter_url']?>"></a>
 							<?php endif;?>
+							<? if($options['facebook_url']): ?>
+								<a id="tt-facebook" href="<?=$options['facebook_url']; ?>"></a>
+							<? endif; ?>
 						</div>
 				</div>
 			</div>
