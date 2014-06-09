@@ -6,10 +6,11 @@
 	<div id="below-the-home-header" class="row-border-bottom-top">
 		<div class="span4">
 			<a href="<?=get_page_link($blog->ID); ?>">
+				<h2>Blog</h2>
 				<?php $aboutPage = new WP_Query(array( 'post_type' => 'post', 'posts_per_page' => 1 )); ?>
 				<?php while($aboutPage->have_posts()) : $aboutPage->the_post(); ?>
 					<?=the_post_thumbnail( array( 300, 300 ) ); ?>
-					<h2>Blog: <b><?=the_title(); ?></b></h2>
+					<b><?=the_title(); ?></b>
 				<?php if($shortDescription = get_post_meta($post->ID, 'post_short_description', true)) : ?>
 						<p><?=$shortDescription; ?></p>
 				<?php else : ?>
@@ -23,8 +24,9 @@
 			<?php $sucessStoryPosts = new WP_Query(array( 'post_type' => 'success_story' , 'posts_per_page' => 1 )); ?>
 			<?php while($sucessStoryPosts->have_posts()) : $sucessStoryPosts->the_post(); ?>
 				<a href="<?=get_permalink( $post->ID ); ?>">
+				<h2>Success Stories</h2>
 				<?=the_post_thumbnail( array( 300, 300 )); ?>
-				<h2>Success Story: <b><?=the_title(); ?></b></h2>
+				<b><?=the_title(); ?></b>
 				<?php if($shortDescription = get_post_meta($post->ID, 'success_story_short_description', true)) : ?>
 				<p><?=$shortDescription; ?></p>
 				<?php else : ?>
@@ -38,8 +40,9 @@
 			<?php $aboutPage = new WP_Query(array( 'post_type' => 'news', 'posts_per_page' => 1 )); ?>
 			<?php while($aboutPage->have_posts()) : $aboutPage->the_post(); ?>
 				<a href="<?=get_permalink( $post->ID ); ?>">
+				<h2>News</h2>
 				<?=the_post_thumbnail(array( 300, 300 )); ?>
-				<h2>News: <b><?=the_title(); ?></b></h2>
+				<b><?=the_title(); ?></b>
 				<?php if($shortDescription = get_post_meta($post->ID, 'news_short_description', true)) : ?>
 				<p><?=$shortDescription; ?></p>
 				<?php else : ?>
