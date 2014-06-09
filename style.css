@@ -150,9 +150,11 @@ ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 0; list-style-
 .tt-search-divider { border-top: 1px dotted #CCC; }
 .tt-search-docs li {margin-top: 10px; }
 
-#tt-facebook {background: url('static/img/social-facebook.png') 0px 0px no-repeat; background-size: contain; width: 25px; height: 25px; display: inline-block; float: right; margin-left: 5px;}
-#tt-twitter {background: url('static/img/social-twitter.png') 0px 0px no-repeat; background-size: contain; width: 25px; height: 25px; display: inline-block; float: right; margin-left: 5px;}
-#tt-gplus {background: url('static/img/social-gplus.png') 0px 0px no-repeat; background-size: contain; width: 25px; height: 25px; display: inline-block; float: right; margin-left: 5px;}
+.tt-social {width: 30px; height: 30px; display: inline-block; float: right; margin-left: 5px;}
+#tt-rss {background: url('static/img/social-rss.png') 0px 0px no-repeat; background-size: contain;}
+#tt-facebook {background: url('static/img/social-facebook.png') 0px 0px no-repeat; background-size: contain;}
+#tt-twitter {background: url('static/img/social-twitter.png') 0px 0px no-repeat; background-size: contain;}
+#tt-gplus {background: url('static/img/social-gplus.png') 0px 0px no-repeat; background-size: contain;}
 
 .tt-search-header-index { margin-bottom: 20px; }
 

@@ -59,14 +59,15 @@
 						<h1 class="span6"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 						<div id="tt-header-links-right" class="span6 tt-header-links">
 							<?php $options = get_option(THEME_OPTIONS_NAME);?>
+								<a id="tt-rss" class="tt-social" href="<?php bloginfo('rss2_url'); ?>"></a>
 							<?php if($options['gplus_url']):?>
-								<a id="tt-gplus" href="<?=$options['gplus_url']?>"></a>
+								<a id="tt-gplus" class="tt-social" href="<?=$options['gplus_url']?>"></a>
 							<?php endif;?>
 							<?php if($options['twitter_url']):?>
-								<a id="tt-twitter" href="<?=$options['twitter_url']?>"></a>
+								<a id="tt-twitter" class="tt-social" href="<?=$options['twitter_url']?>"></a>
 							<?php endif;?>
 							<? if($options['facebook_url']): ?>
-								<a id="tt-facebook" href="<?=$options['facebook_url']; ?>"></a>
+								<a id="tt-facebook" class="tt-social" href="<?=$options['facebook_url']; ?>"></a>
 							<? endif; ?>
 						</div>
 				</div>
