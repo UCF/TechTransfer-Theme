@@ -24,6 +24,7 @@
 
 		</script>
 		<?php endif;?>
+		<a style="display: none;" href="https://plus.google.com/107516028935453397956" rel="publisher">Google+</a>
 
 		<!--[if IE]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,8 +73,9 @@
 						</div>
 				</div>
 			</div>
+			<div class="container">
 			<div class="row">
-				<div class="span8 tt-header-links" id="tt-header-links-left">
+				<div class="span9 tt-header-links" id="tt-header-links-left">
 					<?php
 						$forResearchers = get_page_by_path('for-researchers');
 						$forIndustry = get_page_by_path('for-industry');
@@ -99,7 +101,13 @@
 						</li>
 					</ul>
 				</div>
-				<div class="span4" id="header-search">
+				<div class="span3 visible-desktop" id="header-search">
 							<?php get_search_form(); ?>
 				</div>
+			</div>
+			<div class="row hidden-desktop">
+				<div class="span9" id="header-search">
+					<?php get_search_form(); ?>
+				</div>
+			</div>
 			</div>
