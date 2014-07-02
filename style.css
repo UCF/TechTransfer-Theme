@@ -42,6 +42,8 @@ select#UCFHBHeaderLinks {
 .row-border-bottom-top *:first-child {margin-left:0;}
 
 .search-form #s {
+	margin-top: 10px;
+	margin-bottom: 0;
 	width:100%;
 	display:block;
 	box-sizing: border-box;

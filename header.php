@@ -74,8 +74,8 @@
 				</div>
 			</div>
 			<div class="container">
-			<div class="row">
-				<div class="span9 tt-header-links" id="tt-header-links-left">
+			<div class="tt-header-row row">
+				<div class="span8 tt-header-links" id="tt-header-links-left">
 					<?php
 						$forResearchers = get_page_by_path('for-researchers');
 						$forIndustry = get_page_by_path('for-industry');
@@ -85,19 +85,19 @@
 					?>
 					<ul class="list-unstyled list-inline">
 						<li>
-							<a href="<?=get_page_link($forResearchers->ID); ?>">FOR<br/>RESEARCHERS</a>
+							<a href="<?=get_page_link($forResearchers->ID); ?>">RESEARCHERS</a>
 						</li>
 						<li>
-							<a href="<?=get_page_link($forIndustry->ID); ?>">FOR<br/>INDUSTRY</a>
+							<a href="<?=get_page_link($forIndustry->ID); ?>">INDUSTRY</a>
 						</li>
 						<li>
-							<a href="<?=get_page_link($techLocator->ID); ?>">TECHNOLOGY<br/>LOCATOR</a>
+							<a href="<?=get_page_link($techLocator->ID); ?>">TECHNOLOGY LOCATOR</a>
 						</li>
 						<li>
-							<a href="<?=get_page_link($about->ID); ?>">ABOUT<br/>OTT</a>
+							<a href="<?=get_page_link($about->ID); ?>">ABOUT</a>
 						</li>
 						<li>
-							<a href="<?=get_page_link($contact->ID); ?>">CONTACT<br/>US</a>
+							<a href="<?=get_page_link($contact->ID); ?>">CONTACT</a>
 						</li>
 					</ul>
 				</div>

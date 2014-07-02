@@ -91,22 +91,22 @@ table tr td{border-top-style: solid; border-top-width: 1px;}
 /**
  * Header
  **/
-
-div#tt-header-links-left {text-align: left; padding-top: 10px;}
+.tt-header-row { margin-left: 5px; margin-top: 20px; background: #F5F5F5;}
+div#tt-header-links-left {text-align: left; padding-top: 15px;}
 div#tt-header-links-right {text-align: right;}
 @media (min-width: 767px) {
 	div#tt-header-links-right { margin-top: 25px; right: 0px;}
 }
 
 /* These list-* styles were copied from Bootstrap v3.1.1 */
-.list-unstyled{	padding-left:0;	list-style:none }
-.list-inline{ padding-left:0; list-style:none; margin-left:-5px }
-.list-inline>li{ display:inline-block; padding-left:5px; padding-right:5px }
+.list-unstyled{	padding-left:0;	list-style:none; }
+.list-inline{ padding-left:0; list-style:none; margin-left:-5px; }
+.list-inline>li{ display:inline-block; padding-left:5px; padding-right:5px; }
 .tt-header-links a:hover{text-decoration: underline;}
-.tt-header-links li { margin-right: 4%; }
+.tt-header-links li { margin-right: 4%; font-size: 12px; }
 .tt-header-links li:last-child { margin-right: 0; }
 @media (min-width: 768px) and (max-width: 979px) { .tt-header-links li { margin-right: 1%; } }
-@media (max-width: 636px) {	.tt-header-links li { margin-right: 15%; margin-bottom: 3%; } }
+@media (max-width: 636px) {	.tt-header-links li { margin-bottom: 3%; } }
 
 
 #home{margin-top: 20px}
