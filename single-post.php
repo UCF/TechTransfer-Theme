@@ -18,9 +18,6 @@
 					</span>
 				</div>
 				<!-- END Social Links -->
-				<div class="comments">
-				<?php comments_template(); ?>
-				</div>
 			</article>
 		</div>
 	</div>
