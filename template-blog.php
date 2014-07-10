@@ -21,7 +21,10 @@ get_header(); ?>
 				<?php elseif ( is_year() ) : ?>
 					<?php printf( __( 'Yearly Archives: %s', 'en' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'en' ) ) . '</span>' ); ?>
 				<?php else : ?>
-					<?php _e( 'Technology Transfer Blog', 'en' ); ?>
+					<?php
+						$blog = get_page_by_path('blog');
+						_e($blog->post_title, 'en');
+					?>
 				<?php endif; ?>
 			</h1>
 		</header>
@@ -38,7 +41,6 @@ get_header(); ?>
 			<div class="entry-content">
 				<p>
 					<?
-					echo the_post_thumbnail( array( 300, 300 ) );
 					echo the_content('<p class="serif">Read the rest of this page »</p>');
 					?>
 					<!-- START Social Links -->
@@ -56,7 +58,6 @@ get_header(); ?>
 					</div>
 					<!-- END Social Links -->
 					<br />
-					<a href="<?= comments_link(); ?>" class="comments_link"><?= comments_number('Leave a comment', '1 comment', '% comments') ?></a>
 				</p>
 			</div>
 		</article>
