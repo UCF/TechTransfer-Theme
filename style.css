@@ -110,8 +110,8 @@ select#UCFHBHeaderLinks {
 .news .item,
 .news .title,
 .news .description{font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";}
-.news{list-style-type: none; padding: 0; margin: 0;}
-.news .item{list-style-type: none; margin: 0 0 32px 0;}
+.news{padding: 0; margin: 0;}
+.news .item{margin: 0 0 32px 0;}
 .news .item .title{font-weight: bold; font-size: 18px; line-height:24px;}
 .news .item .description{font-size: 14px; line-height: 1.5em;}
 .news .item img{float: left; max-height: 128px; max-width: 128px; margin: 0 15px 5px 0; border: 1px solid #aaa;
