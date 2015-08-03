@@ -25,7 +25,7 @@
 		<?php $sucessStoryPosts = new WP_Query(array( 'post_type' => 'success_story' , 'posts_per_page' => 1 )); ?>
 		<?php while($sucessStoryPosts->have_posts()) : $sucessStoryPosts->the_post(); ?>
 				<a href="<?=get_permalink( $post->ID ); ?>">
-				<h2>Tech Success Stories</h2>
+				<h2>Faculty Feature</h2>
 				<?=the_post_thumbnail( array( 300, 300 )); ?>
 				<b><?=the_title(); ?></b>
 				<?php if($shortDescription = get_post_meta($post->ID, 'success_story_short_description', true)) : ?>
@@ -34,7 +34,7 @@
 				<p><?=get_the_content(); ?></p>
 				<?php endif; ?>
 				</a>
-				<a href="<?=get_page_link($archives->ID); ?>">&raquo; Success Story Archives</a>
+				<a href="<?=get_page_link($archives->ID); ?>">&raquo; Feature Archives</a>
 		<?php endwhile; ?>
 		</div>
 
