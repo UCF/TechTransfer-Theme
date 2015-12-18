@@ -175,6 +175,7 @@ WebcomAdmin.fileUploader = function($) {
         $container = $(this),
         $field = $container.find('.meta-file-field'),
         $uploadBtn = $container.find('.meta-file-upload'),
+        $editBtn = $container.find('.meta-file-edit'),
         $deleteBtn = $container.find('.meta-file-delete'),
         $previewContainer = $container.find('.meta-file-preview');
 
@@ -214,6 +215,10 @@ WebcomAdmin.fileUploader = function($) {
 
         // Unhide the remove image link
         $deleteBtn.removeClass('hidden');
+
+        if ($editBtn) {
+          $editBtn.removeClass('hidden');
+        }
       });
 
       // Finally, open the modal on click
@@ -232,6 +237,10 @@ WebcomAdmin.fileUploader = function($) {
 
       // Hide the delete image link
       $deleteBtn.addClass('hidden');
+
+      if ($editBtn) {
+        $editBtn.addClass('hidden');
+      }
 
       // Delete the image id from the hidden input
       $field.val('');
