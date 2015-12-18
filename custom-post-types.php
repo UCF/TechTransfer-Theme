@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Abstract class for defining custom post types.  
- * 
+ * Abstract class for defining custom post types.
+ *
  **/
 abstract class CustomPostType{
-	public 
+	public
 		$name           = 'custom_post_type',
 		$plural_name    = 'Custom Posts',
 		$singular_name  = 'Custom Post',
@@ -27,8 +27,8 @@ abstract class CustomPostType{
 		# Optional default ordering for generic shortcode if not specified by user.
 		$default_orderby = null,
 		$default_order   = null;
-	
-	
+
+
 	/**
 	 * Wrapper for get_posts function, that predefines post_type for this
 	 * custom post type.  Any options valid in get_posts can be passed as an
@@ -46,8 +46,8 @@ abstract class CustomPostType{
 		$objects = get_posts($options);
 		return $objects;
 	}
-	
-	
+
+
 	/**
 	 * Similar to get_objects, but returns array of key values mapping post
 	 * title to id if available, otherwise it defaults to id=>id.
@@ -67,8 +67,8 @@ abstract class CustomPostType{
 		}
 		return $opt;
 	}
-	
-	
+
+
 	/**
 	 * Return the instances values defined by $key.
 	 **/
@@ -76,8 +76,8 @@ abstract class CustomPostType{
 		$vars = get_object_vars($this);
 		return $vars[$key];
 	}
-	
-	
+
+
 	/**
 	 * Additional fields on a custom post type may be defined by overriding this
 	 * method on an descendant object.
@@ -85,8 +85,8 @@ abstract class CustomPostType{
 	public function fields(){
 		return array();
 	}
-	
-	
+
+
 	/**
 	 * Using instance variables defined, returns an array defining what this
 	 * custom post type supports.
@@ -111,8 +111,8 @@ abstract class CustomPostType{
 		}
 		return $supports;
 	}
-	
-	
+
+
 	/**
 	 * Creates labels array, defining names for admin panel.
 	 **/
@@ -125,8 +125,8 @@ abstract class CustomPostType{
 			'new_item'      => __($this->options('new_item')),
 		);
 	}
-	
-	
+
+
 	/**
 	 * Creates metabox array for custom post type. Override method in
 	 * descendants to add or modify metaboxes.
@@ -144,8 +144,8 @@ abstract class CustomPostType{
 		}
 		return null;
 	}
-	
-	
+
+
 	/**
 	 * Registers metaboxes defined for custom post type.
 	 **/
@@ -162,8 +162,8 @@ abstract class CustomPostType{
 			);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Registers the custom post type and any other ancillary actions that are
 	 * required for the post to function properly.
@@ -176,19 +176,19 @@ abstract class CustomPostType{
 			'taxonomies' => $this->options('taxonomies'),
 			'_builtin'   => $this->options('built_in')
 		);
-		
+
 		if ($this->options('use_order')){
 			$registration = array_merge($registration, array('hierarchical' => True,));
 		}
-		
+
 		register_post_type($this->options('name'), $registration);
-		
+
 		if ($this->options('use_shortcode')){
 			add_shortcode($this->options('name').'-list', array($this, 'shortcode'));
 		}
 	}
-	
-	
+
+
 	/**
 	 * Shortcode for this custom post type.  Can be overridden for descendants.
 	 * Defaults to just outputting a list of objects outputted as defined by
@@ -205,8 +205,8 @@ abstract class CustomPostType{
 		}
 		return sc_object_list($attr);
 	}
-	
-	
+
+
 	/**
 	 * Handles output for a list of objects, can be overridden for descendants.
 	 * If you want to override how a list of objects are outputted, override
@@ -215,10 +215,10 @@ abstract class CustomPostType{
 	 **/
 	public function objectsToHTML($objects, $css_classes){
 		if (count($objects) < 1){ return '';}
-		
+
 		$class = get_custom_post_type($objects[0]->post_type);
 		$class = new $class;
-		
+
 		ob_start();
 		?>
 		<ul class="<?php if($css_classes):?><?=$css_classes?><?php else:?><?=$class->options('name')?>-list<?php endif;?>">
@@ -232,8 +232,8 @@ abstract class CustomPostType{
 		$html = ob_get_clean();
 		return $html;
 	}
-	
-	
+
+
 	/**
 	 * Outputs this item in HTML.  Can be overridden for descendants.
 	 **/
@@ -257,7 +257,7 @@ class Document extends CustomPostType{
 		$use_shortcode  = True,
 		$use_metabox    = True,
 		$taxonomies		= array( 'post_tag', 'document_group' );
-	
+
 	public function fields(){
 		$fields   = parent::fields();
 		$fields[] = array(
@@ -298,55 +298,55 @@ class Document extends CustomPostType{
 		);
 		return $fields;
 	}
-	
-	
+
+
 	static function get_document_application($form){
 		return mimetype_to_application(self::get_mimetype($form));
 	}
-	
-	
+
+
 	static function get_mimetype($form){
 		if (is_numeric($form)){
 			$form = get_post($form);
 		}
-		
+
 		$prefix   = post_type($form);
 		$document = get_post(get_post_meta($form->ID, $prefix.'_file', True));
-		
+
 		$is_url = get_post_meta($form->ID, $prefix.'_url', True);
-		
+
 		return ($is_url) ? "text/html" : $document->post_mime_type;
 	}
-	
-	
+
+
 	static function get_title($form){
 		if (is_numeric($form)){
 			$form = get_post($form);
 		}
-		
+
 		$prefix = post_type($form);
-		
+
 		return $form->post_title;
 	}
-	
+
 	static function get_url($form){
 		if (is_numeric($form)){
 			$form = get_post($form);
 		}
-		
+
 		$prefix = post_type($form);
-		
+
 		$x = get_post_meta($form->ID, $prefix.'_url', True);
 		$y = wp_get_attachment_url(get_post_meta($form->ID, $prefix.'_file', True));
-		
+
 		if (!$x and !$y){
 			return '#';
 		}
-		
+
 		return ($x) ? $x : $y;
 	}
-	
-	
+
+
 	/**
 	 * Handles output for a list of objects, can be overridden for descendants.
 	 * If you want to override how a list of objects are outputted, override
@@ -355,10 +355,10 @@ class Document extends CustomPostType{
 	 **/
 	public function objectsToHTML($objects, $css_classes){
 		if (count($objects) < 1){ return '';}
-		
+
 		$class_name = get_custom_post_type($objects[0]->post_type);
 		$class      = new $class_name;
-		
+
 		ob_start();
 		?>
 		<ul class="nobullet <?php if($css_classes):?><?=$css_classes?><?php else:?><?=$class->options('name')?>-list<?php endif;?>">
@@ -372,8 +372,8 @@ class Document extends CustomPostType{
 		$html = ob_get_clean();
 		return $html;
 	}
-	
-	
+
+
 	/**
 	 * Outputs this item in HTML.  Can be overridden for descendants.
 	 **/
@@ -387,7 +387,7 @@ class Document extends CustomPostType{
 
 
 class Video extends CustomPostType{
-	public 
+	public
 		$name           = 'video',
 		$plural_name    = 'Videos',
 		$singular_name  = 'Video',
@@ -400,19 +400,19 @@ class Video extends CustomPostType{
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True;
-	
+
 	public function get_player_html($video){
 		return sc_video(array('video' => $video));
 	}
-	
+
 	public function metabox(){
 		$metabox = parent::metabox();
-		
+
 		$metabox['title']   = 'Videos on Media Page';
 		$metabox['helptxt'] = 'Video icon will be resized to width 210px, height 118px.';
 		return $metabox;
 	}
-	
+
 	public function fields(){
 		$prefix = $this->options('name').'_';
 		return array(
@@ -443,7 +443,7 @@ class Video extends CustomPostType{
 
 
 class Publication extends CustomPostType{
-	public 
+	public
 		$name           = 'publication',
 		$plural_name    = 'Publications',
 		$singular_name  = 'Publication',
@@ -456,19 +456,19 @@ class Publication extends CustomPostType{
 		$use_order      = True,
 		$use_title      = True,
 		$use_metabox    = True;
-	
+
 	public function toHTML($pub){
 		return sc_publication(array('pub' => $pub));
 	}
-	
+
 	public function metabox(){
 		$metabox = parent::metabox();
-		
+
 		$metabox['title']   = 'Publications on Media Page';
 		$metabox['helptxt'] = 'Publication cover icon will be resized to width 153px, height 198px.';
 		return $metabox;
 	}
-	
+
 	public function fields(){
 		$prefix = $this->options('name').'_';
 		return array(
@@ -542,17 +542,17 @@ class Person extends CustomPostType
 	/*
 	The following query will pre-populate the person_orderby_name
 	meta field with a guess of the last name extracted from the post title.
-	
+
 	>>>BE SURE TO REPLACE wp_<number>_... WITH THE APPROPRIATE SITE ID<<<
-	
-	INSERT INTO wp_29_postmeta(post_id, meta_key, meta_value) 
-	(	SELECT	id AS post_id, 
-						'person_orderby_name' AS meta_key, 
+
+	INSERT INTO wp_29_postmeta(post_id, meta_key, meta_value)
+	(	SELECT	id AS post_id,
+						'person_orderby_name' AS meta_key,
 						REVERSE(SUBSTR(REVERSE(post_title), 1, LOCATE(' ', REVERSE(post_title)))) AS meta_value
 		FROM		wp_29_posts AS posts
 		WHERE		post_type = 'person' AND
-						(	SELECT meta_id 
-							FROM wp_29_postmeta 
+						(	SELECT meta_id
+							FROM wp_29_postmeta
 							WHERE post_id = posts.id AND
 										meta_key = 'person_orderby_name') IS NULL)
 	*/
@@ -647,8 +647,8 @@ class Person extends CustomPostType
 					</thead>
 					<tbody>
 				<?
-				foreach($people as $person) { 
-					$email = get_post_meta($person->ID, 'person_email', True); 
+				foreach($people as $person) {
+					$email = get_post_meta($person->ID, 'person_email', True);
 					$link = ($person->post_content == '') ? False : True; ?>
 						<tr>
 							<td class="name">
@@ -660,7 +660,7 @@ class Person extends CustomPostType
 								<?if($link) {?><a href="<?=get_permalink($person->ID)?>"><?}?>
 								<?=get_post_meta($person->ID, 'person_jobtitle', True)?>
 								<?if($link) {?></a><?}?>
-							</td> 
+							</td>
 							<td class="phones"><?php if(($link) && ($this->get_phones($person))) {?><a href="<?=get_permalink($person->ID)?>">
 								<?php } if($this->get_phones($person)) {?>
 									<ul class="unstyled"><?php foreach($this->get_phones($person) as $phone) { ?><li><?=$phone?></li><?php } ?></ul>
@@ -669,12 +669,12 @@ class Person extends CustomPostType
 						</tr>
 				<? } ?>
 				</tbody>
-			</table> 
+			</table>
 		</div>
 	</div><?
 	return ob_get_clean();
 	}
-} // END class 
+} // END class
 
 /**
  * Extend the default post type: "Post"
@@ -730,7 +730,7 @@ class Post extends CustomPostType {
  * @author Brandon Groves
  **/
 class About extends CustomPostType{
-	public 
+	public
 		$name           = 'about',
 		$plural_name    = 'About Page',
 		$singular_name  = 'About Page',
@@ -751,7 +751,7 @@ class About extends CustomPostType{
  * @author Brandon Groves
  **/
 class Inventor extends CustomPostType{
-	public 
+	public
 		$name           = 'inventor',
 		$plural_name    = 'Inventors',
 		$singular_name  = 'Inventor',
@@ -785,7 +785,7 @@ class Inventor extends CustomPostType{
  * @author Brandon Groves
  **/
 class Technology extends CustomPostType{
-	public 
+	public
 		$name           = 'technology',
 		$plural_name    = 'Technologies',
 		$singular_name  = 'Technology',
@@ -819,7 +819,7 @@ class Technology extends CustomPostType{
  * @author Brandon Groves
  **/
 class News extends CustomPostType{
-	public 
+	public
 		$name           = 'news',
 		$plural_name    = 'News',
 		$singular_name  = 'News',
@@ -887,7 +887,7 @@ class SuccessStory extends CustomPostType{
  * @author Brandon Groves
  **/
 class FooterResource extends CustomPostType{
-	public 
+	public
 		$name           = 'footerresource',
 		$plural_name    = 'Resource Buttons',
 		$singular_name  = 'Resource Button',

@@ -128,8 +128,8 @@ class Config{
  * @author Jared Lang
  **/
 abstract class Field{
-	protected function check_for_default(){
-		if ($this->value === null){
+	protected function check_for_default() {
+		if ( ( $this->value === null || $this->value === '' ) && isset( $this->default ) ) {
 			$this->value = $this->default;
 		}
 	}
@@ -182,11 +182,19 @@ abstract class Field{
  *
  * @package default
  * @author Jared Lang
- **/
+ * */
 abstract class ChoicesField extends Field{
-	function __construct($attr){
+	// Ensure 'default' value is added to choices if it isn't already
+	protected function add_default_to_choices() {
+		if ( isset( $this->default ) && !array_key_exists( $this->default, $this->choices ) ) {
+			$this->choices = array( $this->default => '' ) + $this->choices;
+		}
+	}
+
+	function __construct( $attr ) {
 		$this->choices = @$attr['choices'];
-		parent::__construct($attr);
+		parent::__construct( $attr );
+		$this->add_default_to_choices();
 	}
 }
 
@@ -295,12 +303,22 @@ class CheckboxField extends ChoicesField{
 		ob_start();
 		?>
 		<ul class="checkbox-list">
-			<?php $i = 0; foreach($this->choices as $key=>$value): $id = htmlentities($this->id).'_'.$i++;?>
+		<?php if ( $this->choices ): ?>
+			<?php
+			$i = 0;
+			foreach( $this->choices as $key => $value ):
+				$id = htmlentities( $this->id ) . '_' . $i++;
+			?>
 			<li>
-				<input<?php if(is_array($this->value) and in_array($value, $this->value)):?> checked="checked"<?php endif;?> type="checkbox" name="<?=htmlentities($this->id)?>[]" id="<?=$id?>" value="<?=htmlentities($value)?>" />
-				<label for="<?=$id?>"><?=htmlentities($key)?></label>
+				<input <?php if ( is_array( $this->value ) and in_array( $value, $this->value ) ): ?> checked="checked"<?php endif; ?> type="checkbox" name="<?php echo htmlentities( $this->id ); ?>[]" id="<?php echo $id; ?>" value="<?php echo htmlentities( $value ); ?>">
+				<label for="<?php echo $id; ?>"><?php echo htmlentities( $key ); ?></label>
 			</li>
 			<?php endforeach;?>
+		<?php else: ?>
+			<li>
+				<input <?php if ( $this->value ): ?> checked="checked"<?php endif; ?> type="checkbox" name="<?php echo htmlentities( $this->id ); ?>" id="<?php echo $this->id; ?>">
+			</li>
+		<?php endif; ?>
 		</ul>
 		<?php
 		return ob_get_clean();
