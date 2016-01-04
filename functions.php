@@ -31,11 +31,18 @@ function protocol_relative_attachment_url($url) {
 add_filter('wp_get_attachment_url', 'protocol_relative_attachment_url');
 
 
-function trigger_edit_attachment( $attachment_id ) {
-	do_action( 'edit_attachment', $attachment_id );
+/**
+ * Force 'edit_attachment' to be fired whenever an attachment's metadata is
+ * updated (for Enable Media Replace compatibility with VDP plugin.)
+ **/
+function trigger_edit_attachment( $meta_id, $post_id, $meta_key, $meta_value ) {
+    // Only $meta_id tends to be available at this point, so fill in the blanks:
+    $meta = get_post_meta_by_id( $meta_id );
+    $post_obj = get_post( intval( $meta->post_id ) );
+    if ( $post_obj && $post_obj->post_type == 'attachment' ) {
+        do_action( 'edit_attachment', intval( $post_obj->ID ) );
+    }
 }
-include_once ABSPATH . 'wp-admin/includes/plugin.php';
-if ( is_plugin_active( 'enable-media-replace/enable-media-replace.php' ) ) {
-	add_action( 'enable-media-replace-upload-done', 'trigger_edit_attachment', 10, 1 );
-}
+add_action( 'updated_post_meta', 'trigger_edit_attachment', 10, 4 );
+
 ?>
