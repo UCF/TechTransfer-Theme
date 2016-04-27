@@ -6,10 +6,28 @@
 	<div class="page-content" id="home" data-template="home-description">
 		<div class="row">
 			<div class="span12">
-				<?php $description = $options['site_description']; ?>
-				<?php if ($description): ?>
+				<?php
+				$description_heading = wptexturize( $options['site_description_heading'] );
+				$description = nl2br( wptexturize( $options['site_description'] ) );
+				$show_search = filter_var( $options['site_description_tech_search'], FILTER_VALIDATE_BOOLEAN );
+				$tech_locator_url = $options['technology_search_url'];
+
+				if ( $description ):
+				?>
 					<div id="tt-header-description">
-						<p><?=$description?></p>
+						<?php if ( $description_heading ): ?>
+						<h2 class="tt-header-description-heading"><?php echo $description_heading; ?></h2>
+						<?php endif; ?>
+
+						<?php if ( $show_search ): ?>
+						<form class="tt-header-search-form" action="<?php echo $tech_locator_url; ?>">
+							<label for="tt-header-search" class="sr-only">Search available technologies</label>
+							<input type="text" id="tt-header-search" name="query" placeholder="Search available technologies">
+							<button class="tt-header-search-btn">Search</button>
+						</form>
+						<?php endif; ?>
+
+						<p><?php echo $description; ?></p>
 					</div>
 				<?php endif; ?>
 			</div>

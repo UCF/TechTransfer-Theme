@@ -266,6 +266,13 @@ Config::$theme_settings = array(
 			'default'     => 10,
 			'value'       => $theme_options['search_per_page'],
 		)),
+		new TextField(array(
+			'name'        => 'Technology Search URL',
+			'id'          => THEME_OPTIONS_NAME.'[technology_search_url]',
+			'description' => 'Full URL to the Technology Search which accepts search queries.',
+			'default'     => 'http://technologies.tt.research.ucf.edu/technologies',
+			'value'       => $theme_options['technology_search_url'],
+		)),
 	),
 	# Added address and phone numbers
 	'Site' => array(
@@ -324,12 +331,28 @@ Config::$theme_settings = array(
 			'choices'     => get_image_choices(),
 			'value'       => $theme_options['site_image'],
 		)),
+		new TextField(array(
+			'name'        => 'Site Description Heading',
+			'id'          => THEME_OPTIONS_NAME.'[site_description_heading]',
+			'description' => 'Title text that appears above your site\'s description. If this value is empty, no heading will be displayed.',
+			'default'     => 'Find Technology Solutions to Meet Your Company\'s Goals',
+			'value'       => $theme_options['site_description_heading'],
+		)),
 		new TextareaField(array(
 			'name'        => 'Site Description',
 			'id'          => THEME_OPTIONS_NAME.'[site_description]',
 			'description' => 'A quick description of your organization and its role.',
-			'default'     => 'This is the site\'s default description, change or remove it on the <a href="'.get_admin_url().'admin.php?page=theme-options#site">theme options page</a> in the admin site.',
+			'default'     => 'UCF has hundreds of innovations ranging from diagnostics to displays, sensors to simulators, nano tech to clean tech, and many more.
+
+Use the search bar above to find solutions for your company or visit the <a href="http://technologies.tt.research.ucf.edu/">Technology Locator</a> to search by technology category.',
 			'value'       => $theme_options['site_description'],
+		)),
+		new CheckboxField(array(
+			'name'        => 'Site Description - Show Technology Search',
+			'id'          => THEME_OPTIONS_NAME.'[site_description_tech_search]',
+			'description' => 'When checked, a search field for the Technology Locator will be displayed next to the site description.',
+			'default'     => 'Off',
+			'value'       => $theme_options['site_description_tech_search'],
 		)),
 	),
 	'Social' => array(
