@@ -145,7 +145,7 @@ select#UCFHBHeaderLinks {
 .alignright { float: right; margin: 5px 0 20px 20px;}
 
 #archives-link { margin-top: 40px; }
-ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 10px;}
+ul.news-list { margin-left: 10px;}
 
 .tt-search-header { color: #666; }
 .tt-search-subheader { color: #333; }
