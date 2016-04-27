@@ -27,6 +27,17 @@ Version: v1.1.4
 .navbar-inverse .brand { color: #fff; }
 .navbar .dropdown-menu, .navbar .dropdown-menu li { display: block !important; }
 
+.sr-only {
+  border: 0 none;
+  clip: rect(0px, 0px, 0px, 0px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 /*#home .site-image img{display: block; margin: 0; border: 5px solid #fff;}*/
 #home .description{font-size: 16px; font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";}
 #home .content p,
@@ -141,3 +152,41 @@ ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 10px;}
 .comments_link { clear: right;}
 .share { width: 90px !important;}
 .share-inline iframe {margin-bottom: -5px !important;}
+
+
+/* Header cta */
+.tt-header-description {
+  color: #274245;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+
+.tt-header-description-heading {
+  font-family: 'Helvetica-Neue', 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.tt-header-search-form {
+  margin: 15px 0;
+}
+
+.tt-header-search-field {
+  /* !important is necessary here to override bootstrap */
+  font-size: 16px !important;
+  padding: 10px 15px !important;
+  width: 240px;
+}
+
+.tt-header-search-btn {
+  font-size: 16px;
+  padding: 10px 15px;
+}
+
+.tt-header-search-btn span[class^="icon-"] {
+  margin-top: 3px;
+}

@@ -1,3 +1,25 @@
+@media (max-width: 979px) {
+  .tt-header-description-heading {
+    font-size: 32px;
+  }
+
+  .tt-header-search-field {
+    /* !important is necessary here to override bootstrap */
+    font-size: 14px !important;
+    padding: 8px 10px !important;
+    width: 175px;
+  }
+
+  .tt-header-search-btn {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .tt-header-search-btn span[class^="icon-"] {
+    margin-top: 0;
+  }
+}
+
 @media (max-width: 767px) {
 	#header { margin-left: 0; }
 
@@ -60,6 +82,11 @@
 	.table.table-bordered tbody tr td {
 		border-left: 0;
 	}
+
+
+  .tt-header-description-heading {
+    margin-bottom: 20px;
+  }
 
 }
 
