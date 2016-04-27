@@ -101,13 +101,33 @@
 						</li>
 					</ul>
 				</div>
+				<?php
+				// Show inline search form if the current page is not the homepage,
+				// or if the current page is the homepage and the "Show Tech Search"
+				// theme option is disabled
+				$show_search_form = false;
+				if (
+					( !is_home() || !is_front_page() ) ||
+					(
+						( is_home() || is_front_page() ) &&
+						( filter_var( $options['site_description_tech_search'], FILTER_VALIDATE_BOOLEAN ) == false )
+					)
+				) {
+					$show_search_form = true;
+				}
+				?>
+
+				<?php if ( $show_search_form ): ?>
 				<div class="span3 visible-desktop" id="header-search">
-							<?php get_search_form(); ?>
+					<?php get_search_form(); ?>
 				</div>
+				<?php endif; ?>
 			</div>
+			<?php if ( $show_search_form ): ?>
 			<div class="row hidden-desktop">
 				<div class="span9" id="header-search">
 					<?php get_search_form(); ?>
 				</div>
 			</div>
-			</div>
+			<?php endif; ?>
+		</div>
