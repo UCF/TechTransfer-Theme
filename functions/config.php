@@ -349,7 +349,7 @@ Use the search bar above to find solutions for your company or visit the <a href
 			'name'        => 'Site Description - Show Technology Search',
 			'id'          => THEME_OPTIONS_NAME.'[site_description_tech_search]',
 			'description' => 'When checked, a search field for the Technology Locator will be displayed next to the site description.',
-			'default'     => 'Off',
+			'default'     => 'On',
 			'value'       => $theme_options['site_description_tech_search'],
 		)),
 	),
