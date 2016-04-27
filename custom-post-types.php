@@ -746,18 +746,18 @@ class About extends CustomPostType{
 }
 
 /**
- * News Post Type
+ * Faculty Feature post type (renamed "News" post type as of v1.1.5)
  *
  * @author Brandon Groves
  **/
-class News extends CustomPostType{
+class FacultyFeature extends CustomPostType{
 	public
 		$name           = 'news',
-		$plural_name    = 'News',
-		$singular_name  = 'News',
-		$add_new_item   = 'Add New News',
-		$edit_item      = 'Edit News',
-		$new_item       = 'New News',
+		$plural_name    = 'Faculty Features',
+		$singular_name  = 'Faculty Feature',
+		$add_new_item   = 'Add New Faculty Feature',
+		$edit_item      = 'Edit Faculty Feature',
+		$new_item       = 'New Faculty Feature',
 		$public         = True,
 		$use_editor     = True,
 		$use_thumbnails = True,
@@ -780,18 +780,18 @@ class News extends CustomPostType{
 }
 
 /**
- * Success Story Post Type
+ * Technology News post type (renamed "Success Story" post type as of v1.1.5)
  *
  * @author Jonathan Villadolid
  **/
-class SuccessStory extends CustomPostType{
+class TechnologyNews extends CustomPostType{
 	public
 		$name           = 'success_story',
-		$plural_name    = 'Success Stories',
-		$singular_name  = 'Success Story',
-		$add_new_item   = 'Add New Success Story',
-		$edit_item      = 'Edit Success Story',
-		$new_item       = 'New Success Story',
+		$plural_name    = 'Technology News',
+		$singular_name  = 'Technology News',
+		$add_new_item   = 'Add New Technology News',
+		$edit_item      = 'Edit Technology News',
+		$new_item       = 'New Technology News',
 		$public         = True,
 		$use_editor     = True,
 		$use_thumbnails = True,

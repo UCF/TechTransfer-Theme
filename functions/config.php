@@ -121,8 +121,8 @@ Config::$custom_post_types = array(
 	'Page',
 	'Post',
 	'Document',
-	'News',
-	'SuccessStory',
+	'FacultyFeature',
+	'TechnologyNews',
 	'About',
 	'FooterResource',
 );
