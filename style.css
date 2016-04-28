@@ -156,35 +156,66 @@ ul.news-list { margin-left: 10px;}
 
 /* Header cta */
 .tt-header-description {
-  color: #274245;
+  background-color: #eee;
   font-family: Georgia, serif;
   font-size: 20px;
   line-height: 1.4;
   margin-bottom: 30px;
+  padding: 40px;
 }
 
 .tt-header-description-heading {
   font-family: 'Helvetica-Neue', 'Helvetica Neue', 'Helvetica', sans-serif;
   font-size: 38px;
   font-weight: 300;
+  display: block;
   line-height: 1.1;
-  margin-bottom: 30px;
+  margin: 0 auto 25px;
+  text-align: center;
+  width: 80%;
 }
 
 .tt-header-search-form {
   margin: 15px 0;
 }
 
+.tt-header-search-outer {
+  margin: auto;
+  position: relative;
+  width: 90%;
+}
+
 .tt-header-search-field {
   /* !important is necessary here to override bootstrap */
-  font-size: 16px !important;
+  border-radius: 0 !important;
+  box-sizing: border-box;
+  font-size: 20px !important;
+  height: 60px !important;
   padding: 10px 15px !important;
-  width: 240px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
 }
 
 .tt-header-search-btn {
-  font-size: 16px;
-  padding: 10px 15px;
+  background: #fff url('static/img/search-sprite.png') no-repeat center center;
+  background-position: -2px -2px;
+  background-size: 40px 80px;
+  box-sizing: border-box;
+  display: block;
+  height: 40px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  width: 40px;
+  z-index: 2;
+}
+
+.tt-header-search-btn:hover,
+.tt-header-search-btn:active,
+.tt-header-search-btn:focus {
+  background-color: #fff;
+  background-position: -2px -42px;
 }
 
 .tt-header-search-btn span[class^="icon-"] {
