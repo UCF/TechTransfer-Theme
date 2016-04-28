@@ -54,5 +54,4 @@
 		<?php get_template_part('includes/below-the-home-header'); ?>
 	</div>
 <?php get_template_part('includes/above-the-footer'); ?>
-<?php get_template_part('includes/featured-tech'); ?>
 <?php get_footer();?>
