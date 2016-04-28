@@ -5,14 +5,22 @@
 
   .tt-header-search-field {
     /* !important is necessary here to override bootstrap */
-    font-size: 14px !important;
+    font-size: 16px !important;
+    height: 50px !important;
     padding: 8px 10px !important;
-    width: 175px;
   }
 
   .tt-header-search-btn {
-    font-size: 14px;
-    padding: 8px 10px;
+    background-size: 30px 60px;
+    height: 30px;
+    right: 10px;
+    width: 30px;
+  }
+
+  .tt-header-search-btn:hover,
+  .tt-header-search-btn:active,
+  .tt-header-search-btn:focus {
+    background-position: -2px -32px;
   }
 
   .tt-header-search-btn span[class^="icon-"] {
@@ -84,8 +92,14 @@
 	}
 
 
+  .tt-header-description {
+    padding: 20px;
+  }
+
   .tt-header-description-heading {
+    font-size: 30px;
     margin-bottom: 20px;
+    width: 100%;
   }
 
 }

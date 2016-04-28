@@ -333,23 +333,24 @@ Config::$theme_settings = array(
 			'name'        => 'Site Description Heading',
 			'id'          => THEME_OPTIONS_NAME.'[site_description_heading]',
 			'description' => 'Title text that appears above your site\'s description. If this value is empty, no heading will be displayed.',
-			'default'     => 'Find Technology Solutions to Meet Your Company\'s Goals',
 			'value'       => $theme_options['site_description_heading'],
 		)),
 		new TextareaField(array(
 			'name'        => 'Site Description',
 			'id'          => THEME_OPTIONS_NAME.'[site_description]',
 			'description' => 'A quick description of your organization and its role.',
-			'default'     => 'UCF has hundreds of innovations ranging from diagnostics to displays, sensors to simulators, nano tech to clean tech, and many more.
-
-Use the search bar above to find solutions for your company or visit the <a href="http://technologies.tt.research.ucf.edu/">Technology Locator</a> to search by technology category.',
+			'default'     => 'UCF has hundreds of innovations ranging from diagnostics to displays, sensors to simulators, nano tech to clean tech, and many more.',
 			'value'       => $theme_options['site_description'],
 		)),
-		new CheckboxField(array(
+		new RadioField(array(
 			'name'        => 'Site Description - Show Technology Search',
 			'id'          => THEME_OPTIONS_NAME.'[site_description_tech_search]',
 			'description' => 'When checked, a search field for the Technology Locator will be displayed next to the site description.',
-			'default'     => 'On',
+			'default'     => 1,
+			'choices'     => array(
+				'On'  => 1,
+				'Off' => 0,
+			),
 			'value'       => $theme_options['site_description_tech_search'],
 		)),
 	),
