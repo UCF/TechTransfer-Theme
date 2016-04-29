@@ -64,6 +64,9 @@ Version: v1.1.4
 #footer .info,
 #footer .info a{line-height: 1.5em; text-align: right; font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif"; font-weight: normal; font-size: 14px;}
 #footer .info .copyright{margin-top: 1em;}
+#footer .search-form {
+  width: 50%;
+}
 
 #below-the-fold{margin-top: 2em; padding-top: 1em;border-top: 1px dotted #666;}
 #below-the-fold h2{font-size: 18px; margin: 0 0 1em 0; padding: 0;}
@@ -160,7 +163,7 @@ ul.news-list { margin-left: 10px;}
   font-family: Georgia, serif;
   font-size: 20px;
   line-height: 1.4;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   padding: 40px;
 }
 

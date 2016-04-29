@@ -36,6 +36,11 @@
 	#below-the-fold { margin-left: 0; }
 	#below-the-fold .span4 { width: 100%; margin-left: 0; margin-bottom: 20px; }
 
+  #footer .search-form {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
 	.news .item { margin-bottom: 10px; }
 
 	/* Shrinkable bootstrap tables for tablets/phones.
