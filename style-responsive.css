@@ -1,27 +1,55 @@
 @media (max-width: 979px) {
-	#UCFHBSearch_and_links { display: none; }
-	#UCFHBHeader div.UCFHBWrapper { width: 100%; }
+  .tt-header-description-heading {
+    font-size: 32px;
+  }
+
+  .tt-header-search-field {
+    /* !important is necessary here to override bootstrap */
+    font-size: 16px !important;
+    height: 50px !important;
+    padding: 8px 10px !important;
+  }
+
+  .tt-header-search-btn {
+    background-size: 30px 60px;
+    height: 30px;
+    right: 10px;
+    width: 30px;
+  }
+
+  .tt-header-search-btn:hover,
+  .tt-header-search-btn:active,
+  .tt-header-search-btn:focus {
+    background-position: -2px -32px;
+  }
+
+  .tt-header-search-btn span[class^="icon-"] {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 767px) {
-	#UCFHBHeader { margin-left: -20px; width: 100%; padding-right: 40px; }
-	
 	#header { margin-left: 0; }
-	
+
 	#home .description { margin-top: 10px; }
-	
+
 	#below-the-fold { margin-left: 0; }
 	#below-the-fold .span4 { width: 100%; margin-left: 0; margin-bottom: 20px; }
-	
+
+  #footer .search-form {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
 	.news .item { margin-bottom: 10px; }
-	
+
 	/* Shrinkable bootstrap tables for tablets/phones.
 	Responsive table guide via css-tricks.com/responsive-data-tables/ */
-	table.table.table-striped, 
-	.table.table-striped thead, 
-	.table.table-striped tbody, 
-	.table.table-striped th, 
-	.table.table-striped td, 
+	table.table.table-striped,
+	.table.table-striped thead,
+	.table.table-striped tbody,
+	.table.table-striped th,
+	.table.table-striped td,
 	.table.table-striped tr {
 		display: block;
 	}
@@ -42,10 +70,10 @@
 	.table.table-striped tbody tr td:empty {
 		display: none;
 	}
-	.table.table-striped td, 
-	.table.table-striped td.name, 
-	.table.table-striped td.email, 
-	.table.table-striped td.job_title, 
+	.table.table-striped td,
+	.table.table-striped td.name,
+	.table.table-striped td.email,
+	.table.table-striped td.job_title,
 	.table.table-striped td.phones {
 		width: auto;
 	}
@@ -56,7 +84,7 @@
 		border-top: 0;
 	}
 	.table.table-striped tbody tr td ul {
-		margin-bottom: 0;	
+		margin-bottom: 0;
 	}
 	.table.table-striped td.phones ul li {
 		line-height: 16px;
@@ -67,6 +95,17 @@
 	.table.table-bordered tbody tr td {
 		border-left: 0;
 	}
+
+
+  .tt-header-description {
+    padding: 20px;
+  }
+
+  .tt-header-description-heading {
+    font-size: 30px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
 
 }
 
@@ -84,9 +123,9 @@
 		margin: 0;
 		line-height: 13px;
 	}
-	.navbar ul#header-menu li a, 
-	.navbar ul#header-menu .dropdown-menu li > a:hover, 
-	.navbar ul#header-menu .dropdown-menu li > a:focus, 
+	.navbar ul#header-menu li a,
+	.navbar ul#header-menu .dropdown-menu li > a:hover,
+	.navbar ul#header-menu .dropdown-menu li > a:focus,
 	.navbar ul#header-menu .dropdown-submenu:hover > a {
 		display: block;
 		color: #999;
