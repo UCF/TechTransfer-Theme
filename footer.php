@@ -13,6 +13,7 @@
 							'walker' => new Bootstrap_Walker_Nav_Menu()
 							));
 						?>
+						<?php get_search_form(); ?>
 					</div>
 					<div class="footer-widget-2 span4">
 						<?php if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Footer - Column Two')):?>

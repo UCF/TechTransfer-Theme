@@ -75,7 +75,7 @@
 			</div>
 			<div class="container">
 			<div class="tt-header-row row">
-				<div class="span8 tt-header-links" id="tt-header-links-left">
+				<div class="span12 tt-header-links" id="tt-header-links-left">
 					<?php
 						$forResearchers = get_page_by_path('for-researchers');
 						$forIndustry = get_page_by_path('for-industry');
@@ -101,13 +101,5 @@
 						</li>
 					</ul>
 				</div>
-				<div class="span3 visible-desktop" id="header-search">
-							<?php get_search_form(); ?>
-				</div>
 			</div>
-			<div class="row hidden-desktop">
-				<div class="span9" id="header-search">
-					<?php get_search_form(); ?>
-				</div>
-			</div>
-			</div>
+		</div>
