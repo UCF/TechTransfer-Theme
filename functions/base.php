@@ -128,7 +128,7 @@ class Config{
  * @author Jared Lang
  **/
 abstract class Field{
-	protected function check_for_default(){
+	protected function check_for_default() {
 		if ( ( $this->value === null || $this->value === '' ) && isset( $this->default ) ) {
 			$this->value = $this->default;
 		}
@@ -182,11 +182,19 @@ abstract class Field{
  *
  * @package default
  * @author Jared Lang
- **/
-abstract class ChoicesField extends Field {
-	function __construct($attr){
+ * */
+abstract class ChoicesField extends Field{
+	// Ensure 'default' value is added to choices if it isn't already
+	protected function add_default_to_choices() {
+		if ( isset( $this->default ) && !array_key_exists( $this->default, $this->choices ) ) {
+			$this->choices = array( $this->default => '' ) + $this->choices;
+		}
+	}
+
+	function __construct( $attr ) {
 		$this->choices = @$attr['choices'];
-		parent::__construct($attr);
+		parent::__construct( $attr );
+		$this->add_default_to_choices();
 	}
 }
 
@@ -296,18 +304,108 @@ class CheckboxField extends ChoicesField{
 ?>
 	<?php if ( isset( $this->choices ) ) : ?>
 		<ul class="checkbox-list">
-			<?php $i = 0; foreach ( $this->choices as $key=>$value ): $id = htmlentities( $this->id ).'_'.$i++;?>
+		<?php if ( $this->choices ): ?>
+			<?php
+			$i = 0;
+			foreach( $this->choices as $key => $value ):
+				$id = htmlentities( $this->id ) . '_' . $i++;
+			?>
 			<li>
-				<input<?php if ( is_array( $this->value ) and in_array( $value, $this->value ) ):?> checked="checked"<?php endif;?> type="checkbox" name="<?php echo htmlentities( $this->id )?>[]" id="<?php echo $id?>" value="<?php echo htmlentities( $value )?>">
-				<label for="<?php echo $id?>"><?php echo htmlentities( $key )?></label>
+				<input <?php if ( is_array( $this->value ) and in_array( $value, $this->value ) ): ?> checked="checked"<?php endif; ?> type="checkbox" name="<?php echo htmlentities( $this->id ); ?>[]" id="<?php echo $id; ?>" value="<?php echo htmlentities( $value ); ?>">
+				<label for="<?php echo $id; ?>"><?php echo htmlentities( $key ); ?></label>
 			</li>
 			<?php endforeach;?>
+		<?php else: ?>
+			<li>
+				<input <?php if ( $this->value ): ?> checked="checked"<?php endif; ?> type="checkbox" name="<?php echo htmlentities( $this->id ); ?>" id="<?php echo $this->id; ?>">
+			</li>
+		<?php endif; ?>
 		</ul>
 	<?php else : ?>
 		<input type="checkbox" name="<?php echo htmlentities( $this->id ); ?>" id="<?php echo $this->id; ?>" <?php echo ( filter_var( $this->value, FILTER_VALIDATE_BOOLEAN ) ) ? ' checked="checked"' : ''; ?> />
 		<label for="<?php echo $this->id; ?>"><?php echo htmlentities( $this->name ); ?></label>
 	<?php endif; ?>
 <?php
+		return ob_get_clean();
+	}
+}
+
+
+class FileField extends Field {
+	function __construct( $attr ) {
+		parent::__construct( $attr );
+		$this->post_id = isset( $attr['post_id'] ) ? $attr['post_id'] : 0;
+		$this->thumbnail = $this->get_attachment_thumbnail_src();
+	}
+
+	function get_attachment_thumbnail_src() {
+		if ( !empty( $this->value ) ) {
+			$attachment = get_post( $this->value );
+			$use_thumb = wp_attachment_is_image( $this->value ) ? false : true;
+			if ( $attachment ) {
+				$src = wp_get_attachment_image_src( $this->value, 'thumbnail', $use_thumb );
+				return $src[0];
+			}
+		}
+		else {
+			return false;
+		}
+	}
+
+	function get_nonce_edit_url() {
+		$nonce_edit_url = '';
+
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		if ( is_plugin_active( 'enable-media-replace/enable-media-replace.php' ) && !empty( $this->value ) ) {
+
+			// Give a direct link to the Enable Media Upload replace screen
+			$enable_media_replace_dir = 'enable-media-replace/enable-media-replace.php';
+
+			$media_edit_url = admin_url() . 'upload.php?page=enable-media-replace/enable-media-replace.php&action=media_replace&attachment_id=' . $this->value;
+
+			// Create a secure URL (Enable Media Replace requires this)
+			$action = 'media_replace';
+			$nonce_edit_url = wp_nonce_url( $media_edit_url, $action );
+			if ( FORCE_SSL_ADMIN ) {
+				$nonce_edit_url = str_replace( 'http:', 'https:', $nonce_edit_url );
+			}
+
+		}
+
+		return $nonce_edit_url;
+	}
+
+	function input_html() {
+		$upload_link = esc_url( get_upload_iframe_src( null, $this->post_id ) );
+
+		ob_start();
+?>
+		<div class="meta-file-wrap">
+			<div class="meta-file-preview">
+				<?php if ( $this->thumbnail ): ?>
+					<img src="<?php echo $this->thumbnail; ?>" alt="File thumbnail"><br>
+					<?php echo basename( wp_get_attachment_url( $this->value ) ); ?>
+				<?php else: ?>
+					No file selected.
+				<?php endif; ?>
+			</div>
+
+			<p class="hide-if-no-js">
+				<a class="meta-file-upload <?php if ( !empty( $this->value ) ) { echo 'hidden'; } ?>" href="<?php echo $upload_link; ?>">
+					Add File
+				</a>
+				<a class="meta-file-delete <?php if ( empty( $this->value ) ) { echo 'hidden'; } ?>" href="#">
+					Remove File
+				</a>
+				<br>
+				<?php if ( $edit_url = $this->get_nonce_edit_url() ): ?>
+				<a target="_blank" class="button-secondary meta-file-edit <?php if ( empty( $this->value ) ) { echo 'hidden'; } ?>" href="<?php echo $edit_url; ?>">Edit / Update File</a>
+				<?php endif; ?>
+			</p>
+
+			<input class="meta-file-field" id="<?php echo htmlentities( $this->id ); ?>" name="<?php echo htmlentities( $this->id ); ?>" type="hidden" value="<?php echo htmlentities( $this->value ); ?>">
+		</div>
+		<?php
 		return ob_get_clean();
 	}
 }
@@ -1521,34 +1619,6 @@ function show_meta_boxes($post){
 	return _show_meta_boxes($post, $meta_box);
 }
 
-function save_file($post_id, $field){
-	$file_uploaded = @!empty($_FILES[$field['id']]);
-	if ($file_uploaded){
-		require_once(ABSPATH.'wp-admin/includes/file.php');
-		$override['action'] = 'editpost';
-		$file               = $_FILES[$field['id']];
-		$uploaded_file      = wp_handle_upload($file, $override);
-
-		# TODO: Pass reason for error back to frontend
-		if ($uploaded_file['error']){return;}
-
-		$attachment = array(
-			'post_title'     => $file['name'],
-			'post_content'   => '',
-			'post_type'      => 'attachment',
-			'post_parent'    => $post_id,
-			'post_mime_type' => $file['type'],
-			'guid'           => $uploaded_file['url'],
-		);
-		$id = wp_insert_attachment($attachment, $file['file'], $post_id);
-		wp_update_attachment_metadata(
-			$id,
-			wp_generate_attachment_metadata($id, $file['file'])
-		);
-		update_post_meta($post_id, $field['id'], $id);
-	}
-}
-
 function save_default($post_id, $field){
 	$old = get_post_meta($post_id, $field['id'], true);
 	$new = $_POST[$field['id']];
@@ -1570,135 +1640,120 @@ function save_default($post_id, $field){
  *
  * @return void
  * @author Jared Lang
- **/
-function _save_meta_data($post_id, $meta_box){
+ * */
+function _save_meta_data( $post_id, $meta_box ) {
 	// verify nonce
-	if (!wp_verify_nonce($_POST['meta_box_nonce'], basename(__FILE__))) {
+	if ( !wp_verify_nonce( $_POST['meta_box_nonce'], basename( __FILE__ ) ) ) {
 		return $post_id;
 	}
 
 	// check autosave
-	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+	if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || isset( $_REQUEST['bulk_edit'] ) ) {
 		return $post_id;
 	}
 
 	// check permissions
-	if ('page' == $_POST['post_type']) {
-		if (!current_user_can('edit_page', $post_id)) {
+	if ( 'page' == $_POST['post_type'] ) {
+		if ( !current_user_can( 'edit_page', $post_id ) ) {
 			return $post_id;
 		}
-	} elseif (!current_user_can('edit_post', $post_id)) {
+	} elseif ( !current_user_can( 'edit_post', $post_id ) ) {
 		return $post_id;
 	}
 
-	foreach ($meta_box['fields'] as $field) {
-		switch ($field['type']){
-			case 'file':
-				save_file($post_id, $field);
-				break;
-			default:
-				save_default($post_id, $field);
-				break;
-		}
+	foreach ( $meta_box['fields'] as $field ) {
+		save_default( $post_id, $field );
 	}
 }
+
+
+/**
+ * Displays meta box fields with current or default values.
+ * */
+function display_meta_box_field( $post_id, $field ) {
+	$field_obj = null;
+	$field['value'] = get_post_meta( $post_id, $field['id'], true );
+
+	// Fix inconsistencies between CPT field array keys and Field obj property names
+	if ( isset( $field['desc'] ) ) {
+		$field['description'] = $field['desc'];
+		unset( $field['desc'] );
+	}
+	if ( isset( $field['options'] ) ) {
+		$field['choices'] = $field['options'];
+		unset( $field['options'] );
+	}
+
+	switch ( $field['type'] ) {
+	case 'text':
+		$field_obj = new TextField( $field );
+		break;
+	case 'textarea':
+		$field_obj = new TextareaField( $field );
+		break;
+	case 'select':
+		$field_obj = new SelectField( $field );
+		break;
+	case 'multiselect':
+		$field_obj = new MultiselectField( $field );
+		break;
+	case 'radio':
+		$field_obj = new RadioField( $field );
+		break;
+	case 'checkbox':
+		$field_obj = new CheckboxField( $field );
+		break;
+	case 'file':
+		$field['post_id'] = $post_id;
+		$field_obj = new FileField( $field );
+		break;
+	default:
+		break;
+	}
+
+	$markup = '';
+
+	if ( $field_obj ) {
+		ob_start();
+?>
+		<tr>
+			<th><?php echo $field_obj->label_html(); ?></th>
+			<td>
+				<?php echo $field_obj->description_html(); ?>
+				<?php echo $field_obj->input_html(); ?>
+			</td>
+		</tr>
+	<?php
+		$markup = ob_get_clean();
+	}
+	else {
+		$markup = '<tr><th></th><td>Don\'t know how to handle field of type '. $field_type .'</td></tr>';
+	}
+
+	echo $markup;
+}
+
 
 /**
  * Outputs the html for the fields defined for a given post and metabox.
  *
  * @return void
  * @author Jared Lang
- **/
-function _show_meta_boxes($post, $meta_box){
-	?>
-	<input type="hidden" name="meta_box_nonce" value="<?=wp_create_nonce(basename(__FILE__))?>"/>
+ * */
+function _show_meta_boxes( $post, $meta_box ) {
+?>
+	<input type="hidden" name="meta_box_nonce" value="<?php echo wp_create_nonce( basename( __FILE__ ) )?>">
 	<table class="form-table">
-	<?php foreach($meta_box['fields'] as $field):
-		$current_value = get_post_meta($post->ID, $field['id'], true);?>
-		<tr>
-			<th><label for="<?=$field['id']?>"><?=$field['name']?></label></th>
-			<td>
-			<?php if($field['desc']):?>
-				<div class="description">
-					<?=$field['desc']?>
-				</div>
-			<?php endif;?>
-
-			<?php switch ($field['type']):
-				case 'text':?>
-				<input type="text" name="<?=$field['id']?>" id="<?=$field['id']?>" value="<?=($current_value) ? htmlentities($current_value) : $field['std']?>" />
-
-			<?php break; case 'textarea':?>
-				<textarea name="<?=$field['id']?>" id="<?=$field['id']?>" cols="60" rows="4"><?=($current_value) ? htmlentities($current_value) : $field['std']?></textarea>
-
-			<?php break; case 'select':?>
-				<select name="<?=$field['id']?>" id="<?=$field['id']?>">
-					<option value=""><?=($field['default']) ? $field['default'] : '--'?></option>
-				<?php foreach ($field['options'] as $k=>$v):?>
-					<option <?=($current_value == $v) ? ' selected="selected"' : ''?> value="<?=$v?>"><?=$k?></option>
-				<?php endforeach;?>
-				</select>
-
-			<?php break; case 'radio':?>
-				<?php foreach ($field['options'] as $k=>$v):?>
-				<label for="<?=$field['id']?>_<?=slug($k, '_')?>"><?=$k?></label>
-				<input type="radio" name="<?=$field['id']?>" id="<?=$field['id']?>_<?=slug($k, '_')?>" value="<?=$v?>"<?=($current_value == $v) ? ' checked="checked"' : ''?> />
-				<?php endforeach;?>
-
-			<?php break; case 'checkbox':?>
-				<input type="checkbox" name="<?=$field['id']?>" id="<?=$field['id']?>"<?=($current_value) ? ' checked="checked"' : ''?> />
-
-			<?php break; case 'file':?>
-				<?php
-					$document_id = get_post_meta($post->ID, $field['id'], True);
-					if ($document_id){
-						$document = get_post($document_id);
-						$url      = str_replace('https://', 'http://', wp_get_attachment_url($document->ID));
-					}else{
-						$document = null;
-					}
-				?>
-				<?php if($document):?>
-				<?php
-					// Is this is a file upload field for a Resource Link?
-					if ($post->post_type == 'document') {
-						// Give a direct link to the Enable Media Upload replace screen
-						$enable_media_replace_dir = 'enable-media-replace/enable-media-replace.php';
-
-						$media_edit_url = admin_url().'upload.php?page=enable-media-replace/enable-media-replace.php&action=media_replace&attachment_id='.$document->ID;
-
-						// Create a secure URL (Enable Media Replace requires this)
-						$action = 'media_replace';
-						$nonce_edit_url = wp_nonce_url( $media_edit_url, $action );
-						if (FORCE_SSL_ADMIN) {
-							$nonce_edit_url = str_replace("http:", "https:", $nonce_edit_url);
-						}
-					}
-				?>
-				<?php if ($post->post_type == 'document') { ?>
-					<div class="description"><strong>NOTE:</strong> to replace the current file while maintaining the existing URL, click "Edit/Update File" (opens in a new window.)  To use a new file with a new URL, use the file uploader below.</div><br />
-					<a href="<?=$url?>"><?=$document->post_title?></a> &nbsp; <a target="_blank" class="button-secondary" href="<?=$nonce_edit_url?>">Edit / Update File</a>
-				<?php } else { ?>
-					<a href="<?=$url?>"><?=$document->post_title?></a>
-				<?php } ?>
-				<br /><br />
-				<?php endif; ?>
-				<input type="file" id="file_<?=$post->ID?>" name="<?=$field['id']?>"><br />
-
-			<?php break; case 'help':?><!-- Do nothing for help -->
-			<?php break; default:?>
-				<p class="error">Don't know how to handle field of type '<?=$field['type']?>'</p>
-			<?php break; endswitch;?>
-			<td>
-		</tr>
-	<?php endforeach;?>
+		<?php
+	foreach ( $meta_box['fields'] as $field ) {
+		display_meta_box_field( $post->ID, $field );
+	}
+?>
 	</table>
-
-	<?php if($meta_box['helptxt']):?>
-	<p><?=$meta_box['helptxt']?></p>
-	<?php endif;?>
-	<?php
+<?php
 }
+
+
 /**
  * Returns the Resouce Group taxonomy terms
  *
