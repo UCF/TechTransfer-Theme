@@ -746,86 +746,18 @@ class About extends CustomPostType{
 }
 
 /**
- * Inventor Post Type
+ * Faculty Feature post type (renamed "News" post type as of v1.1.5)
  *
  * @author Brandon Groves
  **/
-class Inventor extends CustomPostType{
-	public
-		$name           = 'inventor',
-		$plural_name    = 'Inventors',
-		$singular_name  = 'Inventor',
-		$add_new_item   = 'Add New Inventor',
-		$edit_item      = 'Edit Inventor',
-		$new_item       = 'New Inventor',
-		$public         = True,
-		$use_editor     = True,
-		$use_thumbnails = True,
-		$use_order      = True,
-		$use_title      = True,
-		$use_shortcode	= True,
-		$use_metabox    = True;
-
-	public function fields() {
-		$prefix = $this->options('name').'_';
-		return array(
-			array(
-				'name' => 'Shortened Description',
-				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
-				'id'   => $prefix.'short_description',
-				'type' => 'text',
-			),
-		);
-	}
-}
-
-/**
- * Technology Post Type
- *
- * @author Brandon Groves
- **/
-class Technology extends CustomPostType{
-	public
-		$name           = 'technology',
-		$plural_name    = 'Technologies',
-		$singular_name  = 'Technology',
-		$add_new_item   = 'Add New Technology',
-		$edit_item      = 'Edit Technology',
-		$new_item       = 'New Technology',
-		$public         = True,
-		$use_editor     = True,
-		$use_thumbnails = True,
-		$use_order      = True,
-		$use_title      = True,
-		$use_shortcode	= True,
-		$use_metabox    = True;
-
-	public function fields() {
-		$prefix = $this->options('name').'_';
-		return array(
-			array(
-				'name' => 'Shortened Description',
-				'desc' => 'This section is to display a shortened description on most of the pages. If nothing is entered then the main content is used.',
-				'id'   => $prefix.'short_description',
-				'type' => 'text',
-			),
-		);
-	}
-}
-
-/**
- * News Post Type
- *
- * @author Brandon Groves
- **/
-class News extends CustomPostType{
+class FacultyFeature extends CustomPostType{
 	public
 		$name           = 'news',
-		$plural_name    = 'News',
-		$singular_name  = 'News',
-		$add_new_item   = 'Add New News',
-		$edit_item      = 'Edit News',
-		$new_item       = 'New News',
+		$plural_name    = 'Faculty Features',
+		$singular_name  = 'Faculty Feature',
+		$add_new_item   = 'Add New Faculty Feature',
+		$edit_item      = 'Edit Faculty Feature',
+		$new_item       = 'New Faculty Feature',
 		$public         = True,
 		$use_editor     = True,
 		$use_thumbnails = True,
@@ -848,18 +780,18 @@ class News extends CustomPostType{
 }
 
 /**
- * Success Story Post Type
+ * Technology News post type (renamed "Success Story" post type as of v1.1.5)
  *
  * @author Jonathan Villadolid
  **/
-class SuccessStory extends CustomPostType{
+class TechnologyNews extends CustomPostType{
 	public
 		$name           = 'success_story',
-		$plural_name    = 'Success Stories',
-		$singular_name  = 'Success Story',
-		$add_new_item   = 'Add New Success Story',
-		$edit_item      = 'Edit Success Story',
-		$new_item       = 'New Success Story',
+		$plural_name    = 'Technology News',
+		$singular_name  = 'Technology News',
+		$add_new_item   = 'Add New Technology News',
+		$edit_item      = 'Edit Technology News',
+		$new_item       = 'New Technology News',
 		$public         = True,
 		$use_editor     = True,
 		$use_thumbnails = True,

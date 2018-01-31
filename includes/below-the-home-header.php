@@ -22,8 +22,8 @@
 		</div>
 
 		<div class="span4">
-		<?php $sucessStoryPosts = new WP_Query(array( 'post_type' => 'success_story' , 'posts_per_page' => 1 )); ?>
-		<?php while($sucessStoryPosts->have_posts()) : $sucessStoryPosts->the_post(); ?>
+		<?php $techNewsPosts = new WP_Query(array( 'post_type' => 'success_story' , 'posts_per_page' => 1 )); ?>
+		<?php while($techNewsPosts->have_posts()) : $techNewsPosts->the_post(); ?>
 				<a href="<?=get_permalink( $post->ID ); ?>">
 				<h2>Technology News</h2>
 				<?=the_post_thumbnail( array( 300, 300 )); ?>

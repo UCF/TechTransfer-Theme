@@ -58,8 +58,6 @@ body.login #login h1 a .hide{display: block;}
 
 .description code { background:none; font-weight:bold; color:#21759B; padding:0; }
 #post_short_description { width: 60%; }
-#inventor_short_description { width: 60%; }
-#technology_short_description { width: 60%; }
 #news_short_description { width: 60%; }
 #success_story_short_description { width: 60%; }
 

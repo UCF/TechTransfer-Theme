@@ -2,36 +2,7 @@
 Theme Name: Tech Transfer Theme
 Author: UCF Web Communications
 Github Theme URI: https://github.com/UCF/TechTransfer-Theme.git
-Version: v1.1.4
-
-/* UCF Header Styles */
-
-#UCFHBSearch_ucf fieldset #q {
-	line-height: 11px;
-	color: #000000;
-	padding: 2px!important;
-	font-size: 11px;
-	font-family: 'Lucida Grande',sans-serif;
-	height: 13px;
-	border-radius: 0;
-	webkit-border-radius: 0;
-	moz-border-radius: 0;
-	margin-bottom: 0;
-	margin-top: 1px;
-}
-
-select#UCFHBHeaderLinks {
-	height: 18px;
-	font-size: 11px;
-	color: #000000;
-	font-family: 'Lucida Grande', sans-serif;
-	border-radius: 0;
-	webkit-border-radius: 0;
-	moz-border-radius: 0;
-	margin-bottom: 0;
-	margin-top: 1px;
-	padding: 0;
-}
+Version: v1.1.5
 
 
 /* Site Styles */
@@ -55,6 +26,17 @@ select#UCFHBHeaderLinks {
 
 .navbar-inverse .brand { color: #fff; }
 .navbar .dropdown-menu, .navbar .dropdown-menu li { display: block !important; }
+
+.sr-only {
+  border: 0 none;
+  clip: rect(0px, 0px, 0px, 0px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
 
 /*#home .site-image img{display: block; margin: 0; border: 5px solid #fff;}*/
 #home .description{font-size: 16px; font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif";}
@@ -82,6 +64,9 @@ select#UCFHBHeaderLinks {
 #footer .info,
 #footer .info a{line-height: 1.5em; text-align: right; font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif"; font-weight: normal; font-size: 14px;}
 #footer .info .copyright{margin-top: 1em;}
+#footer .search-form {
+  width: 50%;
+}
 
 #below-the-fold{margin-top: 2em; padding-top: 1em;border-top: 1px dotted #666;}
 #below-the-fold h2{font-size: 18px; margin: 0 0 1em 0; padding: 0;}
@@ -145,7 +130,7 @@ select#UCFHBHeaderLinks {
 .alignright { float: right; margin: 5px 0 20px 20px;}
 
 #archives-link { margin-top: 40px; }
-ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 10px;}
+ul.news-list { margin-left: 10px;}
 
 .tt-search-header { color: #666; }
 .tt-search-subheader { color: #333; }
@@ -170,3 +155,72 @@ ul.inventor-list, ul.technology-list, ul.news-list { margin-left: 10px;}
 .comments_link { clear: right;}
 .share { width: 90px !important;}
 .share-inline iframe {margin-bottom: -5px !important;}
+
+
+/* Header cta */
+.tt-header-description {
+  background-color: #eee;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  padding: 40px;
+}
+
+.tt-header-description-heading {
+  font-family: 'Helvetica-Neue', 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-size: 38px;
+  font-weight: 300;
+  display: block;
+  line-height: 1.1;
+  margin: 0 auto 25px;
+  text-align: center;
+  width: 80%;
+}
+
+.tt-header-search-form {
+  margin: 15px 0;
+}
+
+.tt-header-search-outer {
+  margin: auto;
+  position: relative;
+  width: 90%;
+}
+
+.tt-header-search-field {
+  /* !important is necessary here to override bootstrap */
+  border-radius: 0 !important;
+  box-sizing: border-box;
+  font-size: 20px !important;
+  height: 60px !important;
+  padding: 10px 15px !important;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.tt-header-search-btn {
+  background: #fff url('static/img/search-sprite.png') no-repeat center center;
+  background-position: -2px -2px;
+  background-size: 40px 80px;
+  box-sizing: border-box;
+  display: block;
+  height: 40px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  width: 40px;
+  z-index: 2;
+}
+
+.tt-header-search-btn:hover,
+.tt-header-search-btn:active,
+.tt-header-search-btn:focus {
+  background-color: #fff;
+  background-position: -2px -42px;
+}
+
+.tt-header-search-btn span[class^="icon-"] {
+  margin-top: 3px;
+}

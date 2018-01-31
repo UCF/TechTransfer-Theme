@@ -299,9 +299,10 @@ class RadioField extends ChoicesField{
  * @author Jared Lang
  **/
 class CheckboxField extends ChoicesField{
-	function input_html(){
+	function input_html() {
 		ob_start();
-		?>
+?>
+	<?php if ( isset( $this->choices ) ) : ?>
 		<ul class="checkbox-list">
 		<?php if ( $this->choices ): ?>
 			<?php
@@ -320,7 +321,11 @@ class CheckboxField extends ChoicesField{
 			</li>
 		<?php endif; ?>
 		</ul>
-		<?php
+	<?php else : ?>
+		<input type="checkbox" name="<?php echo htmlentities( $this->id ); ?>" id="<?php echo $this->id; ?>" <?php echo ( filter_var( $this->value, FILTER_VALIDATE_BOOLEAN ) ) ? ' checked="checked"' : ''; ?> />
+		<label for="<?php echo $this->id; ?>"><?php echo htmlentities( $this->name ); ?></label>
+	<?php endif; ?>
+<?php
 		return ob_get_clean();
 	}
 }
