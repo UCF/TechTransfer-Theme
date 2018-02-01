@@ -26,10 +26,10 @@ function shortcode_interface_html(){
 	<input type="hidden" name="shortcode-text" id="shortcode-text" value="<?=THEME_URL."/includes/shortcode-text.php"?>" />
 	<input type="text" name="shortcode-search" id="shortcode-search" placeholder="Find shortcodes..."/>
 	<button type="button">Search</button>
-		
+
 	<ul id="shortcode-results" class="empty">
 	</ul>
-		
+
 	<p>Or select:</p>
 	<select name="shortcode-select" id="shortcode-select">
 		<option value="">--Choose Shortcode--</option>
@@ -37,7 +37,7 @@ function shortcode_interface_html(){
 		<option class="shortcode" value="<?=$name?>"><?=$name?></option>
 		<?php endforeach;?>
 	</select>
-	
+
 	<p>For more information about available shortcodes, please see the <a href="<?=get_admin_url()?>admin.php?page=theme-help#shortcodes">help documentation for shortcodes</a>.</p>
 	<?php
 }
@@ -65,7 +65,7 @@ add_action('add_meta_boxes', 'shortcode_interface');
 function login_scripts(){
 	ob_start();?>
 	<link rel="stylesheet" href="<?=THEME_CSS_URL?>/admin.css" type="text/css" media="screen" charset="utf-8" />
-	<?php 
+	<?php
 	$out = ob_get_clean();
 	print $out;
 }
@@ -143,7 +143,7 @@ function theme_options_sanitize($input){
 
 /**
  * Modifies the default stylesheets associated with the TinyMCE editor.
- * 
+ *
  * @return string
  * @author Jared Lang
  **/
@@ -175,3 +175,24 @@ add_filter('mce_buttons_2', 'editor_format_options');
  * Remove paragraph tag from excerpts
  **/
 remove_filter('the_excerpt', 'wpautop');
+
+
+/**
+ * Enqueue the scripts and css necessary for the WP Media Uploader on
+ * all admin pages
+ * */
+function enqueue_wpmedia_throughout_admin() {
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_media();
+}
+add_action( 'admin_enqueue_scripts', 'enqueue_wpmedia_throughout_admin' );
+
+
+/**
+ * Add 'iconOrThumb' value to js-based attachment objects (for wp.media)
+ * */
+function add_icon_or_thumb_to_attachmentjs( $response, $attachment, $meta ) {
+	$response['iconOrThumb'] = wp_attachment_is_image( $attachment->ID ) ? $response['sizes']['thumbnail']['url'] : $response['icon'];
+	return $response;
+}
+add_filter( 'wp_prepare_attachment_for_js', 'add_icon_or_thumb_to_attachmentjs', 10, 3 );
