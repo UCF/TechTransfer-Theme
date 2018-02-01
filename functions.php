@@ -33,7 +33,7 @@ add_filter('wp_get_attachment_url', 'protocol_relative_attachment_url');
 
 /**
  * Force 'edit_attachment' to be fired whenever an attachment's metadata is
- * updated (for Enable Media Replace compatibility with VDP plugin.)
+ * updated (for Enable Media Replace compatibility with Varnish plugins.)
  **/
 function trigger_edit_attachment( $meta_id, $post_id, $meta_key, $meta_value ) {
     // Only $meta_id tends to be available at this point, so fill in the blanks:
