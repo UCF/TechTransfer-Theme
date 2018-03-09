@@ -199,9 +199,9 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Events Calendar URL',
 			'id'          => THEME_OPTIONS_NAME.'[events_url]',
-			'description' => 'Base URL for the calendar you wish to use. Example: <em>http://events.ucf.edu/mycalendar</em>',
+			'description' => 'Base URL for the calendar you wish to use. Example: <em>https://events.ucf.edu/mycalendar</em>',
 			'value'       => $theme_options['events_url'],
-			'default'     => 'http://events.ucf.edu',
+			'default'     => 'https://events.ucf.edu',
 		)),
 	),
 	'News' => array(
@@ -233,9 +233,9 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'News Feed',
 			'id'          => THEME_OPTIONS_NAME.'[news_url]',
-			'description' => 'Use the following URL for the news RSS feed <br />Example: <em>http://today.ucf.edu/feed/</em>',
+			'description' => 'Use the following URL for the news RSS feed <br />Example: <em>https://today.ucf.edu/feed/</em>',
 			'value'       => $theme_options['news_url'],
-			'default'     => 'http://today.ucf.edu/feed/',
+			'default'     => 'https://today.ucf.edu/feed/',
 		)),
 	),
 	'Search' => array(
@@ -376,20 +376,20 @@ Config::$theme_settings = array(
 		new TextField(array(
 			'name'        => 'Facebook URL',
 			'id'          => THEME_OPTIONS_NAME.'[facebook_url]',
-			'description' => 'URL to the facebook page you would like to direct visitors to.  Example: <em>https://www.facebook.com/CSBrisketBus</em>',
+			'description' => 'URL to the facebook page you would like to direct visitors to.  Example: <em>https://www.facebook.com/UCF</em>',
 			'default'     => null,
 			'value'       => $theme_options['facebook_url'],
 		)),
 		new TextField(array(
 			'name'        => 'Twitter URL',
 			'id'          => THEME_OPTIONS_NAME.'[twitter_url]',
-			'description' => 'URL to the twitter user account you would like to direct visitors to.  Example: <em>http://twitter.com/csbrisketbus</em>',
+			'description' => 'URL to the twitter user account you would like to direct visitors to.  Example: <em>https://twitter.com/UCF</em>',
 			'value'       => $theme_options['twitter_url'],
 		)),
 		new TextField(array(
 			'name'        => 'Google Plus URL',
 			'id'          => THEME_OPTIONS_NAME.'[gplus_url]',
-			'description' => 'URL to the google plus user account you would like to direct visitors to.  Example: <em>http://plus.google.com/csbrisketbus</em>',
+			'description' => 'URL to the google plus user account you would like to direct visitors to.  Example: <em>https://plus.google.com/+UCF</em>',
 			'value'       => $theme_options['gplus_url'],
 		)),
 		new RadioField(array(
