@@ -418,7 +418,7 @@ class Video extends CustomPostType{
 		return array(
 			array(
 				'name' => 'URL',
-				'desc' => 'YouTube URL pointing to video.<br>  Example: http://www.youtube.com/watch?v=IrSeMg7iPbM',
+				'desc' => 'YouTube URL pointing to video.<br>  Example: https://www.youtube.com/watch?v=IrSeMg7iPbM',
 				'id'   => $prefix.'url',
 				'type' => 'text',
 				'std'  => ''
@@ -474,7 +474,7 @@ class Publication extends CustomPostType{
 		return array(
 			array(
 				'name'  => 'Publication URL',
-				'desc' => 'Example: <span style="font-family:monospace;font-weight:bold;color:#21759B;">http://publications.ucf.edu/publications/admissions-viewbook/</span>',
+				'desc' => 'Example: <span style="font-family:monospace;font-weight:bold;color:#21759B;">https://publications.ucf.edu/publications/admissions-viewbook/</span>',
 				'id'   => $prefix.'url',
 				'type' => 'text',
 				'std'  => '',
