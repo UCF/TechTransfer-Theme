@@ -17,7 +17,7 @@
 				<?php if ( $shortDescription = get_post_meta( $newsPage->ID, 'news_short_description', true ) ) : ?>
 					<p><?php echo $shortDescription; ?></p>
 				<?php else : ?>
-					<p><?php echo get_the_content(); ?></p>
+					<p><?php echo apply_filters( 'the_content', $newsPage->post_content ); ?></p>
 				<?php endif; ?>
 			</a>
 			<a href="<?php echo get_page_link( $archives->ID ); ?>">&raquo; Researcher Archives</a>
@@ -37,7 +37,7 @@
 				<?php if ( $shortDescription = get_post_meta( $blogPage->ID, 'post_short_description', true ) ) : ?>
 					<p><?php echo $shortDescription; ?></p>
 				<?php else : ?>
-					<p><?php echo get_the_content(); ?></p>
+					<p><?php echo apply_filters( 'the_content', $blogPage->post_content ); ?></p>
 				<?php endif; ?>
 			</a>
 			<a href="<?php echo get_page_link( $archives->ID ); ?>">&raquo; Blog Archives</a>
@@ -57,7 +57,7 @@
 				<?php if ( $shortDescription = get_post_meta( $techNewsPost->ID, 'success_story_short_description', true ) ) : ?>
 					<p><?php echo $shortDescription; ?></p>
 				<?php else : ?>
-					<p><?php echo get_the_content(); ?></p>
+					<p><?php echo apply_filters( 'the_content', $techNewsPost->post_content ); ?></p>
 				<?php endif; ?>
 			</a>
 			<a href="<?php echo get_page_link( $archives->ID ); ?>">&raquo; Tech News Archives</a>
