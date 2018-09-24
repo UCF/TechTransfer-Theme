@@ -1,58 +1,67 @@
 <?php
- $blog = get_page_by_path('blog');
- $archives = get_page_by_path('archives');
+ $blog = get_page_by_path( 'blog' );
+ $archives = get_page_by_path( 'archives' );
 ?>
 <div class="row">
 	<div id="below-the-home-header" class="row-border-bottom-top">
 		<div class="span4">
-		<?php $blogPage = new WP_Query(array( 'post_type' => 'post', 'posts_per_page' => 1 )); ?>
-		<?php while($blogPage->have_posts()) : $blogPage->the_post(); ?>
-			<a href="<?=get_page_link($blog->ID); ?>">
-				<h2>Patent Trending Blog</h2>
-					<?=the_post_thumbnail( array( 300, 300 ) ); ?>
-					<b><?=the_title(); ?></b>
-				<?php if($shortDescription = get_post_meta($post->ID, 'post_short_description', true)) : ?>
-						<p><?=$shortDescription; ?></p>
+		<?php
+		$newsPage = get_posts( array( 'post_type' => 'news', 'posts_per_page' => 1 ) );
+		if ( ! empty( $newsPage ) ) :
+			$newsPage = $newsPage[0];
+		?>
+			<a href="<?php echo get_permalink( $newsPage->ID ); ?>">
+				<h2>Featured Researcher</h2>
+				<?php echo get_the_post_thumbnail( $newsPage->ID, array( 300, 300 ) ); ?>
+				<b><?php echo get_the_title( $newsPage->ID ); ?></b>
+				<?php if ( $shortDescription = get_post_meta( $newsPage->ID, 'news_short_description', true ) ) : ?>
+					<p><?php echo $shortDescription; ?></p>
 				<?php else : ?>
-						<p><?=get_the_content(); ?></p>
+					<p><?php echo apply_filters( 'the_content', $newsPage->post_content ); ?></p>
 				<?php endif; ?>
 			</a>
-			<a href="<?=get_page_link($blog->ID); ?>">&raquo; Blog Archives</a>
-		<?php endwhile; ?>
+			<a href="<?php echo get_page_link( $archives->ID ); ?>">&raquo; Researcher Archives</a>
+		<?php endif; ?>
 		</div>
 
 		<div class="span4">
-		<?php $techNewsPosts = new WP_Query(array( 'post_type' => 'success_story' , 'posts_per_page' => 1 )); ?>
-		<?php while($techNewsPosts->have_posts()) : $techNewsPosts->the_post(); ?>
-				<a href="<?=get_permalink( $post->ID ); ?>">
+		<?php
+		$blogPage = get_posts( array( 'post_type' => 'post', 'posts_per_page' => 1 ) );
+		if ( ! empty( $blogPage ) ) :
+			$blogPage = $blogPage[0];
+		?>
+			<a href="<?php echo get_permalink( $blogPage->ID ); ?>">
+				<h2>Featured Technology</h2>
+				<?php echo get_the_post_thumbnail( $blogPage->ID, array( 300, 300 ) ); ?>
+				<b><?php echo get_the_title( $blogPage->ID ); ?></b>
+				<?php if ( $shortDescription = get_post_meta( $blogPage->ID, 'post_short_description', true ) ) : ?>
+					<p><?php echo $shortDescription; ?></p>
+				<?php else : ?>
+					<p><?php echo apply_filters( 'the_content', $blogPage->post_content ); ?></p>
+				<?php endif; ?>
+			</a>
+			<a href="<?php echo get_page_link( $archives->ID ); ?>">&raquo; Blog Archives</a>
+		<?php endif; ?>
+		</div>
+
+		<div class="span4">
+		<?php
+		$techNewsPost = get_posts( array( 'post_type' => 'success_story', 'posts_per_page' => 1 ) );
+		if ( ! empty( $techNewsPost ) ) :
+			$techNewsPost = $techNewsPost[0];
+		?>
+			<a href="<?php echo get_permalink( $techNewsPost->ID ); ?>">
 				<h2>Technology News</h2>
-				<?=the_post_thumbnail( array( 300, 300 )); ?>
-				<b><?=the_title(); ?></b>
-				<?php if($shortDescription = get_post_meta($post->ID, 'success_story_short_description', true)) : ?>
-				<p><?=$shortDescription; ?></p>
+				<?php echo get_the_post_thumbnail( $techNewsPost->ID, array( 300, 300 )); ?>
+				<b><?php echo get_the_title( $techNewsPost->ID ); ?></b>
+				<?php if ( $shortDescription = get_post_meta( $techNewsPost->ID, 'success_story_short_description', true ) ) : ?>
+					<p><?php echo $shortDescription; ?></p>
 				<?php else : ?>
-				<p><?=get_the_content(); ?></p>
+					<p><?php echo apply_filters( 'the_content', $techNewsPost->post_content ); ?></p>
 				<?php endif; ?>
-				</a>
-				<a href="<?=get_page_link($archives->ID); ?>">&raquo; Tech News Archives</a>
-		<?php endwhile; ?>
-		</div>
-
-		<div class="span4">
-		<?php $newsPage = new WP_Query(array( 'post_type' => 'news', 'posts_per_page' => 1 )); ?>
-		<?php while($newsPage->have_posts()) : $newsPage->the_post(); ?>
-				<a href="<?=get_permalink( $post->ID ); ?>">
-				<h2>Featured Researcher</h2>
-				<?=the_post_thumbnail(array( 300, 300 )); ?>
-				<b><?=the_title(); ?></b>
-				<?php if($shortDescription = get_post_meta($post->ID, 'news_short_description', true)) : ?>
-				<p><?=$shortDescription; ?></p>
-				<?php else : ?>
-				<p><?=get_the_content(); ?></p>
-				<?php endif; ?>
-				</a>
-				<a href="<?=get_page_link($archives->ID); ?>">&raquo; Researcher Archives</a>
-		<?php endwhile; ?>
+			</a>
+			<a href="<?php echo get_page_link( $archives->ID ); ?>">&raquo; Tech News Archives</a>
+		<?php endif; ?>
 		</div>
 	</div>
 </div>
