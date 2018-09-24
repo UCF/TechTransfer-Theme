@@ -34,7 +34,7 @@
 					<p><?php echo get_the_content(); ?></p>
 				<?php endif; ?>
 			</a>
-			<a href="<?php echo get_page_link($blog->ID); ?>">&raquo; Blog Archives</a>
+			<a href="<?php echo get_page_link($archives->ID); ?>">&raquo; Blog Archives</a>
 		<?php endwhile; ?>
 		</div>
 
