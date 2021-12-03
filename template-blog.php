@@ -40,7 +40,7 @@ get_header(); ?>
 			</header> <!-- .entry-header -->
 			<div class="entry-content">
 				<p>
-					<?
+					<?php
 					echo the_content('<p class="serif">Read the rest of this page »</p>');
 					?>
 					<!-- START Social Links -->

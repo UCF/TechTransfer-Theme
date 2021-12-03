@@ -13,6 +13,7 @@ function __init__(){
 	add_theme_support('post-thumbnails');
 	add_image_size('homepage', 620);
 	add_image_size('homepage-secondary', 540);
+    register_nav_menu('main-menu', __('Main Menu'));
 	register_nav_menu('footer-menu', __('Footer Menu'));
 	register_sidebar(array(
 		'name'          => __('Sidebar'),
@@ -91,9 +92,6 @@ add_action('after_setup_theme', '__init__');
 
 
 # Set theme constants
-#define('DEBUG', True);                  # Always on
-#define('DEBUG', False);                 # Always off
-define('DEBUG', isset($_GET['debug'])); # Enable via get parameter
 define('THEME_URL', get_stylesheet_directory_uri());
 define('THEME_ADMIN_URL', get_admin_url());
 define('THEME_DIR', get_stylesheet_directory());
@@ -107,9 +105,9 @@ define('THEME_OPTIONS_NAME', 'theme');
 define('THEME_OPTIONS_PAGE_TITLE', 'Theme Options');
 
 $theme_options = get_option(THEME_OPTIONS_NAME);
-define('GA_ACCOUNT', $theme_options['ga_account']);
-define('CB_UID', $theme_options['cb_uid']);
-define('CB_DOMAIN', $theme_options['cb_domain']);
+define('GA_ACCOUNT',    ( isset( $theme_options['ga_account'] ) )?  $theme_options['ga_account'] :  null );
+define('CB_UID',        ( isset( $theme_options['cb_uid'] ) )?      $theme_options['cb_uid'] :      null );
+define('CB_DOMAIN',     ( isset( $theme_options['cb_domain'] ) )?   $theme_options['cb_domain'] :   null );
 
 
 /**

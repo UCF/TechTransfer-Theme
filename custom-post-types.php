@@ -581,7 +581,7 @@ class Person extends CustomPostType
 				),
 				array(
 					'name'    => __('Title Suffix'),
-					'desc'    => __('Be sure to include leading comma or space if neccessary.'),
+					'desc'    => __('Be sure to include leading comma or space if necessary.'),
 					'id'      => $this->options('name').'_title_suffix',
 					'type'    => 'text',
 				),
@@ -646,20 +646,20 @@ class Person extends CustomPostType
 						</tr>
 					</thead>
 					<tbody>
-				<?
+				<?php
 				foreach($people as $person) {
 					$email = get_post_meta($person->ID, 'person_email', True);
 					$link = ($person->post_content == '') ? False : True; ?>
 						<tr>
 							<td class="name">
-								<?if($link) {?><a href="<?=get_permalink($person->ID)?>"><?}?>
+								<?php if($link) {?><a href="<?=get_permalink($person->ID)?>"><?php } ?>
 									<?=$this->get_name($person)?>
-								<?if($link) {?></a><?}?>
+								<?php if($link) {?></a><?php }?>
 							</td>
 							<td class="job_title">
-								<?if($link) {?><a href="<?=get_permalink($person->ID)?>"><?}?>
+								<?php if($link) {?><a href="<?=get_permalink($person->ID)?>"><?php }?>
 								<?=get_post_meta($person->ID, 'person_jobtitle', True)?>
-								<?if($link) {?></a><?}?>
+								<?php if($link) {?></a><?php }?>
 							</td>
 							<td class="phones"><?php if(($link) && ($this->get_phones($person))) {?><a href="<?=get_permalink($person->ID)?>">
 								<?php } if($this->get_phones($person)) {?>
@@ -667,11 +667,11 @@ class Person extends CustomPostType
 								<?php } if(($link) && ($this->get_phones($person))) {?></a><?php }?></td>
 							<td class="email"><?=(($email != '') ? '<a href="mailto:'.$email.'">'.$email.'</a>' : '')?></td>
 						</tr>
-				<? } ?>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>
-	</div><?
+	</div><?php
 	return ob_get_clean();
 	}
 } // END class
@@ -778,7 +778,6 @@ class FacultyFeature extends CustomPostType{
 		);
 	}
 }
-
 /**
  * Technology News post type (renamed "Success Story" post type as of v1.1.5)
  *

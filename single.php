@@ -16,9 +16,9 @@
 							<?php endif; ?>
 					<?php endforeach; ?>
 				<?php else : ?>
-					<? if(!is_front_page())	{ ?>
+					<?php if(!is_front_page())	{ ?>
 							<h1><?php the_title();?></h1>
-					<? } ?>
+					<?php } ?>
 					<?php the_content();?>
 				<?php endif; ?>
 			</article>

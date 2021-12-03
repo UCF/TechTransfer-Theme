@@ -494,37 +494,7 @@ function dump(){
 }
 
 
-/**
- * Will add a debug comment to the output when the debug constant is set true.
- * Any value, including null, is enough to trigger it.
- *
- * @return void
- * @author Jared Lang
- **/
-if (DEBUG){
-	function debug($string){ /*
-		print "<!-- DEBUG: {$string} -->\n"; */
-	}
-}else{
-	function debug($string){return;}
-}
 
-
-/**
- * Will execute the function $func with the arguments passed via $args if the
- * debug constant is set true.  Returns whatever value the called function
- * returns, or void if debug is not set active.
- *
- * @return mixed
- * @author Jared Lang
- **/
-if (DEBUG){
-	function debug_callfunc($func, $args){
-		return call_user_func_array($func, $args);
-	}
-}else{
-	function debug_callfunc($func, $args){return;}
-}
 
 
 /**
@@ -561,7 +531,7 @@ function bootstrap_menus() {
 	class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 
-			function start_lvl( &$output, $depth ) {
+			function start_lvl( &$output, $depth = 0, $args = null ) {
 
 				$indent = str_repeat( "\t", $depth );
 				$output	   .= "\n$indent<ul class=\"dropdown-menu\">\n";
@@ -1198,19 +1168,6 @@ function set_defaults_for_options(){
 	}
 }
 
-
-/**
- * Runs as wordpress is shutting down.
- *
- * @return void
- * @author Jared Lang
- **/
-function __shutdown__(){
-	global $timer;
-	$elapsed = round($timer->elapsed() * 1000);
-	debug("{$elapsed} milliseconds");
-}
-add_action('shutdown', '__shutdown__');
 
 
 /**
