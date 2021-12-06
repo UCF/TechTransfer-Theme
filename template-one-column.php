@@ -7,9 +7,9 @@
 	<div class="row page-content" id="<?=$post->post_name?>">
 		<div class="span12">
 			<article>
-				<? if(!is_front_page())	{ ?>
+				<?php if(!is_front_page())	{ ?>
 						<h2 class="content-title"><?php the_title();?></h2>
-				<? } ?>
+				<?php } ?>
 				<?php the_content();?>
 			</article>
 		</div>

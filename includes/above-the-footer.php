@@ -24,9 +24,9 @@
 			<?php
 			if( ($counter % $row_size) == 0) {
 				if($counter > 0) {
-					?></div><?
+					?></div><?php
 				}
-				?><div class="row resource-row"><?
+				?><div class="row resource-row"><?php
 			}
 			?>
 
